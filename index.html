@@ -1,0 +1,555 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Вебінар: CRM + телефонія + AI — відділ продажів, який не губить ліди</title>
+<meta name="description" content="Безкоштовний вебінар від IPTel та Frigat: як з'єднати CRM, телефонію та AI, щоб жоден лід не загубився.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --navy:#14224a; --navy-2:#1f3270; --ink:#26325a; --muted:#5d6a8f;
+  --gold:#f2b632; --gold-2:#ffd36b; --bg:#f3f5fb; --card:#fff;
+  --line:#e1e6f3; --ok:#1fa971; --bad:#e5484d;
+  --r:20px; --shadow:0 18px 50px -20px rgba(20,34,74,.25);
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font-family:Manrope,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+.wrap{width:min(1120px,100% - 32px);margin-inline:auto}
+section{padding:88px 0}
+h1,h2,h3{color:var(--navy);line-height:1.12;letter-spacing:-.02em}
+h2{font-size:clamp(28px,4vw,42px);font-weight:800;margin-bottom:14px}
+h2 em,h1 em{font-style:italic;font-weight:700;color:#d99a0b}
+.eyebrow{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--navy-2);background:#e4e9f8;padding:6px 12px;border-radius:99px;margin-bottom:16px}
+.lead{color:var(--muted);font-size:18px;max-width:620px}
+.btn{display:inline-flex;align-items:center;gap:10px;font:700 16px Manrope,sans-serif;border:0;cursor:pointer;text-decoration:none;padding:16px 28px;border-radius:14px;background:var(--gold);color:var(--navy);box-shadow:0 10px 24px -10px rgba(242,182,50,.9);transition:transform .2s,box-shadow .2s,background .2s}
+.btn:hover{transform:translateY(-2px);background:var(--gold-2);box-shadow:0 16px 30px -12px rgba(242,182,50,1)}
+.btn.ghost{background:transparent;box-shadow:none;border:2px solid var(--navy);color:var(--navy)}
+.btn.ghost:hover{background:var(--navy);color:#fff}
+:focus-visible{outline:3px solid var(--navy-2);outline-offset:3px}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+.rv.in{opacity:1;transform:none}
+
+/* ============ NAV ============ */
+.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(243,245,251,.82);border-bottom:1px solid transparent;transition:border-color .3s}
+.nav.scrolled{border-color:var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font-weight:800;color:var(--navy);font-size:18px;display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo i{width:30px;height:30px;border-radius:9px;background:var(--navy);display:grid;place-items:center}
+.logo i::after{content:"";width:10px;height:10px;border-radius:50%;background:var(--gold)}
+.nav .btn{padding:10px 18px;font-size:14px}
+.nav-links{display:flex;gap:26px;font-weight:600;font-size:15px;color:var(--muted)}
+.nav-links a{text-decoration:none}.nav-links a:hover{color:var(--navy)}
+@media(max-width:800px){.nav-links{display:none}}
+
+/* ============ HERO ============ */
+.hero{padding:56px 0 96px;position:relative;background:
+  radial-gradient(900px 500px at 85% -10%,#ffe9b0 0,transparent 60%),
+  radial-gradient(700px 500px at -10% 20%,#dbe4ff 0,transparent 60%)}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+.hero h1{font-size:clamp(34px,5.2vw,60px);font-weight:800;margin-bottom:20px}
+.hero .lead{margin-bottom:28px}
+.meta{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:30px}
+.chip{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);padding:9px 14px;border-radius:12px;font-weight:600;font-size:14px;box-shadow:0 4px 14px -8px rgba(20,34,74,.2)}
+.cta-row{display:flex;gap:14px;flex-wrap:wrap}
+.count{display:flex;gap:10px;margin-top:34px}
+.count div{background:var(--navy);color:#fff;border-radius:14px;min-width:70px;padding:12px 8px;text-align:center}
+.count b{display:block;font-size:28px;font-weight:800;font-variant-numeric:tabular-nums;color:var(--gold)}
+.count span{font-size:11px;letter-spacing:.1em;text-transform:uppercase;opacity:.75}
+
+/* live feed card */
+.feed{background:var(--navy);border-radius:26px;padding:22px;box-shadow:var(--shadow);color:#fff;position:relative}
+.feed::before{content:"";position:absolute;inset:-14px -14px auto auto;width:120px;height:120px;border-radius:50%;background:var(--gold);z-index:-1;opacity:.9}
+.feed-h{display:flex;justify-content:space-between;align-items:center;font-size:13px;opacity:.85;margin-bottom:14px}
+.live{display:flex;align-items:center;gap:7px}
+.live::before{content:"";width:8px;height:8px;border-radius:50%;background:#43e69b;animation:pulse 1.4s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(67,230,155,.7)}100%{box-shadow:0 0 0 10px rgba(67,230,155,0)}}
+.feed-list{display:flex;flex-direction:column;gap:10px;min-height:318px}
+.ev{display:flex;gap:12px;align-items:flex-start;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);padding:12px 14px;border-radius:14px;animation:slide .5s both}
+@keyframes slide{from{opacity:0;transform:translateY(-14px)}}
+.ev .ic{flex:none;width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-size:17px;background:rgba(255,255,255,.12)}
+.ev.miss .ic{background:rgba(229,72,77,.3)}
+.ev.ok .ic{background:rgba(31,169,113,.35)}
+.ev.ai .ic{background:rgba(242,182,50,.35)}
+.ev b{display:block;font-size:14px}
+.ev small{opacity:.7;font-size:12.5px}
+.feed-f{margin-top:14px;font-size:13px;display:flex;justify-content:space-between;opacity:.9}
+.feed-f strong{color:var(--gold)}
+@media(max-width:900px){.hero .wrap{grid-template-columns:1fr}.feed{margin-top:10px}}
+
+/* ============ LOGOS STRIP ============ */
+.stats{padding:0;margin-top:-40px;position:relative;z-index:2}
+.stats .grid{display:grid;grid-template-columns:repeat(4,1fr);background:#fff;border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden}
+.stat{padding:26px 24px;border-right:1px solid var(--line)}
+.stat:last-child{border:0}
+.stat b{font-size:34px;color:var(--navy);font-weight:800;display:block}
+.stat span{font-size:14px;color:var(--muted)}
+@media(max-width:760px){.stats .grid{grid-template-columns:1fr 1fr}.stat:nth-child(2){border-right:0}.stat:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+
+/* ============ CALCULATOR ============ */
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:40px}
+.panel{background:var(--card);border-radius:var(--r);padding:32px;box-shadow:var(--shadow)}
+.field{margin-bottom:26px}
+.field label{display:flex;justify-content:space-between;font-weight:700;margin-bottom:10px;color:var(--navy)}
+.field label output{color:#c58a00}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:8px;border-radius:9px;background:linear-gradient(90deg,var(--gold) var(--p,50%),#e4e9f8 var(--p,50%));outline-offset:6px}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:50%;background:var(--navy);border:4px solid #fff;box-shadow:0 2px 10px rgba(20,34,74,.4);cursor:grab}
+input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--navy);border:4px solid #fff;cursor:grab}
+.result{background:var(--navy);color:#fff;display:flex;flex-direction:column;justify-content:space-between}
+.result h3{color:#fff;font-size:15px;font-weight:600;opacity:.75;letter-spacing:0}
+.big{font-size:clamp(38px,6vw,58px);font-weight:800;color:var(--gold);font-variant-numeric:tabular-nums;line-height:1.05;margin:6px 0 4px}
+.bar{height:14px;border-radius:9px;background:rgba(255,255,255,.14);overflow:hidden;margin:18px 0 8px;display:flex}
+.bar i{display:block;height:100%;transition:width .5s}
+.bar .lost{background:var(--bad)}.bar .won{background:var(--ok)}.bar .rest{background:rgba(255,255,255,.0)}
+.legend{display:flex;gap:18px;font-size:13px;opacity:.85;flex-wrap:wrap}
+.legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;background:var(--c)}
+.note{font-size:12.5px;opacity:.6;margin-top:18px}
+@media(max-width:860px){.calc{grid-template-columns:1fr}}
+
+/* ============ JOURNEY ============ */
+.journey{margin-top:40px;background:var(--card);border-radius:28px;box-shadow:var(--shadow);padding:30px}
+.jhead{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;margin-bottom:26px}
+.toggle{display:flex;background:#e9edf8;border-radius:14px;padding:5px}
+.toggle button{border:0;background:transparent;font:700 14px Manrope;padding:10px 18px;border-radius:10px;cursor:pointer;color:var(--muted);transition:.25s}
+.toggle button.on{background:var(--navy);color:#fff}
+.toggle button.on.good{background:var(--ok)}
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:26px;position:relative}
+.step{border:2px solid var(--line);background:#fff;border-radius:16px;padding:14px 12px;text-align:left;cursor:pointer;font:600 14px Manrope;color:var(--ink);transition:.25s;position:relative}
+.step span{display:block;font-size:22px;margin-bottom:4px}
+.step:hover{border-color:var(--gold)}
+.step.on{border-color:var(--navy);background:var(--navy);color:#fff;transform:translateY(-3px)}
+.stage{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center;min-height:200px}
+.stage h3{font-size:24px;margin-bottom:8px}
+.stage p{color:var(--muted)}
+.verdict{display:inline-block;margin-top:14px;font-weight:800;padding:8px 14px;border-radius:10px;font-size:14px}
+.verdict.bad{background:#fde8e9;color:#b32a2f}.verdict.good{background:#dcf5ea;color:#12714b}
+.mock{background:#f3f5fb;border:1px solid var(--line);border-radius:18px;padding:18px;font-size:14px;transition:.3s}
+.mock .row{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px dashed var(--line)}
+.mock .row:last-child{border:0}
+.mock .row b{color:var(--navy)}
+.tag{font-size:12px;font-weight:700;padding:3px 9px;border-radius:8px;background:#e4e9f8;color:var(--navy-2)}
+.tag.r{background:#fde8e9;color:#b32a2f}.tag.g{background:#dcf5ea;color:#12714b}.tag.y{background:#fff1cc;color:#8a6200}
+@media(max-width:860px){.steps{grid-template-columns:1fr 1fr}.stage{grid-template-columns:1fr}}
+
+/* ============ PROGRAM ============ */
+.prog{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px}
+.pcard{background:#fff;border-radius:var(--r);padding:28px;box-shadow:var(--shadow);position:relative;overflow:hidden;transition:transform .3s}
+.pcard:hover{transform:translateY(-6px)}
+.pcard .n{position:absolute;right:18px;top:6px;font-size:84px;font-weight:800;color:#eef1fa;line-height:1}
+.pcard .ico{width:50px;height:50px;border-radius:14px;background:#fff1cc;display:grid;place-items:center;font-size:24px;margin-bottom:18px;position:relative}
+.pcard h3{font-size:20px;margin-bottom:8px;position:relative}
+.pcard p{color:var(--muted);font-size:15px;position:relative}
+.pcard ul{margin:12px 0 0 18px;color:var(--muted);font-size:14.5px;position:relative}
+@media(max-width:860px){.prog{grid-template-columns:1fr}}
+
+/* ============ QUIZ ============ */
+.quiz{max-width:760px;margin:40px auto 0;background:var(--navy);color:#fff;border-radius:28px;padding:38px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.quiz::after{content:"";position:absolute;width:260px;height:260px;border-radius:50%;right:-80px;top:-100px;background:radial-gradient(var(--gold),transparent 70%);opacity:.35}
+.qprog{height:6px;background:rgba(255,255,255,.15);border-radius:9px;overflow:hidden;margin-bottom:26px}
+.qprog i{display:block;height:100%;width:0;background:var(--gold);transition:width .4s}
+.qn{font-size:13px;opacity:.7;margin-bottom:8px}
+.quiz h3{color:#fff;font-size:clamp(20px,3vw,26px);margin-bottom:24px;min-height:60px}
+.ans{display:grid;grid-template-columns:1fr 1fr;gap:12px;position:relative;z-index:1}
+.ans button{font:700 16px Manrope;color:#fff;background:rgba(255,255,255,.08);border:2px solid rgba(255,255,255,.18);padding:16px;border-radius:14px;cursor:pointer;transition:.2s}
+.ans button:hover{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+.qres{text-align:center;position:relative;z-index:1}
+.score{font-size:76px;font-weight:800;color:var(--gold);line-height:1}
+.qres h3{margin:10px 0;min-height:0}
+.qres p{opacity:.85;margin-bottom:22px}
+.qres .btn{margin:4px}
+.qres .btn.ghost{border-color:#fff;color:#fff}.qres .btn.ghost:hover{background:#fff;color:var(--navy)}
+@media(max-width:560px){.ans{grid-template-columns:1fr}.quiz{padding:26px 20px}}
+
+/* ============ SPEAKERS ============ */
+.spk{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:40px}
+.sp{display:flex;gap:20px;background:#fff;border-radius:var(--r);padding:24px;box-shadow:var(--shadow);align-items:center}
+.ava{flex:none;width:96px;height:96px;border-radius:50%;background:linear-gradient(135deg,var(--navy),var(--navy-2));display:grid;place-items:center;color:var(--gold);font-size:34px;font-weight:800;border:4px solid var(--gold-2)}
+.sp h3{font-size:20px}.sp small{color:#c58a00;font-weight:700;display:block;margin:2px 0 8px}
+.sp p{color:var(--muted);font-size:14.5px}
+@media(max-width:760px){.spk{grid-template-columns:1fr}.sp{flex-direction:column;text-align:center}}
+
+/* ============ FAQ ============ */
+.faq{max-width:780px;margin:36px auto 0}
+details{background:#fff;border-radius:16px;margin-bottom:12px;box-shadow:0 6px 20px -14px rgba(20,34,74,.35);overflow:hidden}
+summary{cursor:pointer;list-style:none;font-weight:700;color:var(--navy);padding:20px 24px;display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:26px;line-height:1;color:#c58a00;transition:transform .3s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{padding:0 24px 22px;color:var(--muted)}
+
+/* ============ REGISTER ============ */
+.reg{background:linear-gradient(135deg,var(--navy),var(--navy-2));color:#fff;border-radius:32px;padding:56px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;position:relative;overflow:hidden}
+.reg::before{content:"";position:absolute;width:420px;height:420px;border-radius:50%;left:-140px;bottom:-200px;background:var(--gold);opacity:.18}
+.reg h2{color:#fff}.reg h2 em{color:var(--gold)}
+.reg .lead{color:#c9d3f2}
+.reg ul{list-style:none;padding:0;margin-top:22px;display:grid;gap:10px;position:relative}
+.reg li::before{content:"✓";display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--gold);color:var(--navy);font-weight:800;font-size:13px;margin-right:10px}
+form{background:#fff;color:var(--ink);border-radius:22px;padding:30px;position:relative;box-shadow:0 20px 50px -20px rgba(0,0,0,.5)}
+form label{display:block;font-weight:700;font-size:14px;margin-bottom:6px;color:var(--navy)}
+form input,form select{width:100%;font:500 16px Manrope;padding:14px 16px;border:2px solid var(--line);border-radius:12px;margin-bottom:16px;background:#f8f9fd;transition:.2s}
+form input:focus,form select:focus{outline:0;border-color:var(--navy-2);background:#fff}
+form input:invalid:not(:placeholder-shown){border-color:var(--bad)}
+form .btn{width:100%;justify-content:center}
+.fine{font-size:12px;color:var(--muted);margin-top:12px;text-align:center}
+.thanks{text-align:center;padding:20px 0}
+.thanks .ok{width:72px;height:72px;border-radius:50%;background:var(--ok);color:#fff;display:grid;place-items:center;font-size:36px;margin:0 auto 16px;animation:pop .5s}
+@keyframes pop{from{transform:scale(0)}}
+.thanks h3{font-size:24px;margin-bottom:8px}
+@media(max-width:860px){.reg{grid-template-columns:1fr;padding:32px 22px}}
+
+footer{padding:36px 0;color:var(--muted);font-size:14px;text-align:center}
+
+/* sticky mobile cta */
+.mcta{position:fixed;left:12px;right:12px;bottom:12px;z-index:60;display:none;transform:translateY(120%);transition:transform .4s}
+.mcta.show{transform:none}
+.mcta .btn{width:100%;justify-content:center}
+@media(max-width:700px){.mcta{display:block}section{padding:64px 0}}
+
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="#top" class="logo"><i></i>IPTel × Frigat</a>
+    <nav class="nav-links">
+      <a href="#loss">Калькулятор</a>
+      <a href="#journey">Шлях ліда</a>
+      <a href="#program">Програма</a>
+      <a href="#quiz">Тест</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn" href="#register">Зареєструватися</a>
+  </div>
+</header>
+
+<main id="top">
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Безкоштовний вебінар</span>
+      <h1>CRM + телефонія + AI: як побудувати відділ продажів, <em>який не губить ліди</em></h1>
+      <p class="lead">Розберемо, як з'єднати дзвінки, CRM та штучний інтелект в єдину систему — щоб кожне звернення потрапляло в роботу, а менеджери продавали, а не вели таблички.</p>
+      <div class="meta">
+        <div class="chip">📅 <span id="dateLabel">3 грудня</span></div>
+        <div class="chip">🕓 16:00 за Києвом</div>
+        <div class="chip">⏱ 60 хв + Q&amp;A</div>
+        <div class="chip">💻 Онлайн</div>
+      </div>
+      <div class="cta-row">
+        <a class="btn" href="#register">Забронювати місце →</a>
+        <a class="btn ghost" href="#loss">Порахувати, скільки ми губимо</a>
+      </div>
+      <div class="count" aria-label="Відлік до вебінару" id="count">
+        <div><b data-u="d">00</b><span>днів</span></div>
+        <div><b data-u="h">00</b><span>годин</span></div>
+        <div><b data-u="m">00</b><span>хвилин</span></div>
+        <div><b data-u="s">00</b><span>секунд</span></div>
+      </div>
+    </div>
+
+    <aside class="feed" aria-label="Приклад автоматизації">
+      <div class="feed-h"><span class="live">Live · так працює система</span><span id="clock">09:41</span></div>
+      <div class="feed-list" id="feed"></div>
+      <div class="feed-f"><span>Збережено ліда</span><strong id="saved">0</strong></div>
+    </aside>
+  </div>
+</section>
+
+<!-- ============ STATS ============ -->
+<div class="stats">
+  <div class="wrap"><div class="grid rv">
+    <div class="stat"><b>60 хв</b><span>практики без води</span></div>
+    <div class="stat"><b>5 кроків</b><span>від дзвінка до угоди</span></div>
+    <div class="stat"><b>0 ₴</b><span>участь безкоштовна</span></div>
+    <div class="stat"><b>Q&amp;A</b><span>відповіді на ваші кейси</span></div>
+  </div></div>
+</div>
+
+<!-- ============ CALCULATOR ============ -->
+<section id="loss">
+  <div class="wrap">
+    <span class="eyebrow">Інтерактив №1</span>
+    <h2>Скільки грошей <em>витікає</em> з вашої воронки?</h2>
+    <p class="lead">Посунте повзунки — і побачите, що коштують пропущені дзвінки та забуті заявки.</p>
+    <div class="calc">
+      <div class="panel rv">
+        <div class="field"><label for="leads">Звернень на місяць <output id="oLeads"></output></label><input type="range" id="leads" min="20" max="1000" step="10" value="200"></div>
+        <div class="field"><label for="check">Середній чек, ₴ <output id="oCheck"></output></label><input type="range" id="check" min="1000" max="200000" step="1000" value="25000"></div>
+        <div class="field"><label for="conv">Конверсія в продаж, % <output id="oConv"></output></label><input type="range" id="conv" min="2" max="50" value="15"></div>
+        <div class="field" style="margin:0"><label for="lossPct">Ліди, які губляться, % <output id="oLoss"></output></label><input type="range" id="lossPct" min="5" max="60" value="25"></div>
+      </div>
+      <div class="panel result rv">
+        <div>
+          <h3>Втрати за рік через загублені ліди</h3>
+          <div class="big" id="rYear">0 ₴</div>
+          <h3 style="margin-top:20px">Можна повернути з CRM + телефонією + AI (≈ 60 %)</h3>
+          <div class="big" style="color:#43e69b;font-size:clamp(28px,4vw,40px)" id="rBack">0 ₴</div>
+          <div class="bar"><i class="lost" id="bLost"></i><i class="won" id="bWon"></i></div>
+          <div class="legend"><span style="--c:var(--bad)">Втрачаємо</span><span style="--c:var(--ok)">Реально повернути</span></div>
+        </div>
+        <p class="note">* Орієнтовний розрахунок для наочності. Реальні цифри залежать від вашого бізнесу — на вебінарі розберемо, як їх виміряти.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ JOURNEY ============ -->
+<section id="journey" style="padding-top:20px">
+  <div class="wrap">
+    <span class="eyebrow">Інтерактив №2</span>
+    <h2>Один лід. <em>Два сценарії.</em></h2>
+    <p class="lead">Перемикайте «Як зараз» і «Як має бути» та клікайте по кроках — побачите, де саме лід зникає.</p>
+    <div class="journey rv">
+      <div class="jhead">
+        <b style="color:var(--navy);font-size:18px">Шлях клієнта від першого дзвінка до угоди</b>
+        <div class="toggle" role="tablist">
+          <button class="on" data-mode="bad" role="tab">😩 Як зараз</button>
+          <button data-mode="good" role="tab">🚀 Як має бути</button>
+        </div>
+      </div>
+      <div class="steps" id="steps"></div>
+      <div class="stage" id="stage"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROGRAM ============ -->
+<section id="program">
+  <div class="wrap">
+    <span class="eyebrow">Програма</span>
+    <h2>Що ви винесете <em>з вебінару</em></h2>
+    <div class="prog">
+      <article class="pcard rv"><span class="n">1</span><div class="ico">📞</div><h3>Телефонія, що працює на продажі</h3><p>Як перетворити кожен дзвінок на дані.</p><ul><li>Автоматичне створення ліда з дзвінка</li><li>Маршрутизація на «свого» менеджера</li><li>Пропущені — повернути за 5 хвилин</li></ul></article>
+      <article class="pcard rv"><span class="n">2</span><div class="ico">🧩</div><h3>CRM як єдине джерело правди</h3><p>Воронка, у якій нічого не губиться.</p><ul><li>Етапи, задачі, нагадування</li><li>Контроль дисципліни без мікроменеджменту</li><li>Звіти, які читаються за 2 хвилини</li></ul></article>
+      <article class="pcard rv"><span class="n">3</span><div class="ico">🤖</div><h3>AI, що береже час менеджера</h3><p>Практичні сценарії, без хайпу.</p><ul><li>Розшифровка та резюме розмов</li><li>Оцінка якості дзвінків</li><li>Підказки наступного кроку</li></ul></article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUIZ ============ -->
+<section id="quiz" style="padding-top:20px">
+  <div class="wrap" style="text-align:center">
+    <span class="eyebrow">Інтерактив №3</span>
+    <h2>Експрес-тест: <em>де ви губите ліди?</em></h2>
+    <p class="lead" style="margin-inline:auto">5 запитань — 30 секунд. Отримаєте оцінку «щільності» вашої воронки.</p>
+    <div class="quiz" id="quizBox" style="text-align:left"></div>
+  </div>
+</section>
+
+<!-- ============ SPEAKERS ============ -->
+<section id="speakers" style="padding-top:20px">
+  <div class="wrap">
+    <span class="eyebrow">Спікери</span>
+    <h2>Хто <em>проведе</em> вебінар</h2>
+    <div class="spk">
+      <!-- TODO: замінити на реальних спікерів та фото -->
+      <div class="sp rv"><div class="ava">І</div><div><h3>Ім'я Прізвище</h3><small>IPTel · експерт з телефонії</small><p>Допомагає компаніям будувати контакт-центри та інтегрувати телефонію з бізнес-процесами.</p></div></div>
+      <div class="sp rv"><div class="ava">F</div><div><h3>Ім'я Прізвище</h3><small>Frigat · експерт з CRM</small><p>Впроваджує CRM та автоматизацію продажів, знає, де в типових воронках «тече».</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq" style="padding-top:20px">
+  <div class="wrap" style="text-align:center">
+    <span class="eyebrow">FAQ</span>
+    <h2>Часті <em>питання</em></h2>
+    <div class="faq" style="text-align:left">
+      <details><summary>Вебінар справді безкоштовний?</summary><p>Так, участь безкоштовна. Потрібна лише реєстрація, щоб ми надіслали посилання.</p></details>
+      <details><summary>Буде запис?</summary><p>Так, усім зареєстрованим надішлемо запис та матеріали після вебінару.</p></details>
+      <details><summary>Це підійде малому бізнесу?</summary><p>Так. Принципи однакові для команди з 3 і з 30 менеджерів — покажемо, з чого почати без великих бюджетів.</p></details>
+      <details><summary>Мені потрібна саме ваша CRM чи телефонія?</summary><p>Ні. Ми розбираємо підхід, який можна застосувати з будь-якими інструментами, а також покажемо готові інтеграції.</p></details>
+      <details><summary>Можна поставити своє запитання?</summary><p>Звісно. Вкажіть його в реєстрації або напишіть у чат під час ефіру — розберемо найцікавіші кейси наживо.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REGISTER ============ -->
+<section id="register" style="padding-top:20px">
+  <div class="wrap">
+    <div class="reg rv">
+      <div style="position:relative">
+        <h2>Забронюйте місце <em>на вебінарі</em></h2>
+        <p class="lead">Кількість місць в ефірі обмежена — запишіться зараз.</p>
+        <ul>
+          <li>Чек-ліст «10 місць, де губляться ліди»</li>
+          <li>Запис вебінару та презентація</li>
+          <li>Відповідь на ваше запитання від експертів</li>
+        </ul>
+      </div>
+      <form id="form" novalidate>
+        <div id="formBody">
+          <label for="fn">Ім'я</label>
+          <input id="fn" name="name" placeholder="Як до вас звертатися" required autocomplete="name">
+          <label for="fe">Email</label>
+          <input id="fe" name="email" type="email" placeholder="you@company.com" required autocomplete="email">
+          <label for="fp">Телефон</label>
+          <input id="fp" name="phone" type="tel" placeholder="+380 __ ___ __ __" required autocomplete="tel">
+          <label for="fs">Розмір відділу продажів</label>
+          <select id="fs" name="size"><option>1–3 менеджери</option><option>4–10 менеджерів</option><option>11–30 менеджерів</option><option>30+</option></select>
+          <button class="btn" type="submit">Зареєструватися безкоштовно</button>
+          <p class="fine">Натискаючи кнопку, ви погоджуєтесь на обробку персональних даних.</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap">© IPTel × Frigat NET · Вебінар «CRM + телефонія + AI»</div></footer>
+<div class="mcta" id="mcta"><a class="btn" href="#register">Зареєструватися →</a></div>
+
+<script>
+/* ============ CONFIG — змінюйте тут ============ */
+const CONFIG = {
+  webinarDate: "2026-12-03T16:00:00+02:00",   // дата та час вебінару
+  formEndpoint: ""                            // URL для відправки форми (CRM / Google Script / Formspree)
+};
+
+const $ = (s, r=document) => r.querySelector(s);
+const $$ = (s, r=document) => [...r.querySelectorAll(s)];
+const fmt = n => Math.round(n).toLocaleString("uk-UA").replace(/ /g," ");
+
+/* ---- scroll reveal / nav / sticky cta ---- */
+const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target);} }), {threshold:.12});
+$$(".rv").forEach(el => io.observe(el));
+addEventListener("scroll", () => {
+  $("#nav").classList.toggle("scrolled", scrollY > 8);
+  const reg = $("#register").getBoundingClientRect();
+  $("#mcta").classList.toggle("show", scrollY > 500 && reg.top > innerHeight*0.6);
+}, {passive:true});
+
+/* ---- countdown ---- */
+const target = new Date(CONFIG.webinarDate);
+$("#dateLabel").textContent = target.toLocaleDateString("uk-UA",{day:"numeric",month:"long"});
+function tick(){
+  let d = Math.max(0, target - Date.now())/1000;
+  const v = {d:Math.floor(d/86400), h:Math.floor(d%86400/3600), m:Math.floor(d%3600/60), s:Math.floor(d%60)};
+  for(const k in v) $(`[data-u=${k}]`).textContent = String(v[k]).padStart(2,"0");
+}
+tick(); setInterval(tick,1000);
+
+/* ---- hero live feed ---- */
+const events = [
+  {c:"miss", i:"📵", t:"Пропущений дзвінок · +380 67 ••• 41 12", s:"Клієнт не додзвонився"},
+  {c:"ok",   i:"⚡", t:"Лід створено в CRM автоматично", s:"Джерело: вхідний дзвінок"},
+  {c:"ok",   i:"🔔", t:"Задача менеджеру: передзвонити за 5 хв", s:"Олена К. · термін 09:46"},
+  {c:"ai",   i:"🤖", t:"AI-резюме розмови готове", s:"Потреба: CRM для 12 менеджерів · бюджет обговорено"},
+  {c:"ok",   i:"💬", t:"Клієнту надіслано повідомлення", s:"«Дякуємо, ми вже на зв'язку!»"},
+  {c:"ai",   i:"📈", t:"Угода просунулась: «Комерційна пропозиція»", s:"Наступний крок: демо у четвер"}
+];
+let ei = 0, saved = 0; const feed = $("#feed");
+function pushEv(){
+  const e = events[ei % events.length]; ei++;
+  const el = document.createElement("div");
+  el.className = "ev " + e.c;
+  el.innerHTML = `<div class="ic">${e.i}</div><div><b>${e.t}</b><small>${e.s}</small></div>`;
+  feed.prepend(el);
+  while(feed.children.length > 4) feed.lastChild.remove();
+  if(ei % events.length === 0){ saved++; $("#saved").textContent = saved; }
+  const n = new Date(); $("#clock").textContent = n.toLocaleTimeString("uk-UA",{hour:"2-digit",minute:"2-digit"});
+}
+pushEv(); setInterval(pushEv, 2200);
+
+/* ---- calculator ---- */
+const rs = ["leads","check","conv","lossPct"].map(id => $("#"+id));
+function calc(){
+  const [leads,check,conv,loss] = rs.map(r => +r.value);
+  rs.forEach(r => r.style.setProperty("--p", (r.value-r.min)/(r.max-r.min)*100 + "%"));
+  $("#oLeads").textContent = leads; $("#oCheck").textContent = fmt(check) + " ₴";
+  $("#oConv").textContent = conv + " %"; $("#oLoss").textContent = loss + " %";
+  const lostMonth = leads*loss/100*conv/100*check;
+  const year = lostMonth*12, back = year*.6;
+  const total = leads*(1-loss/100)*conv/100*check*12 + year; // потенційний оборот
+  $("#rYear").textContent = fmt(year) + " ₴";
+  $("#rBack").textContent = "+" + fmt(back) + " ₴";
+  const pl = Math.min(100, year/total*100), pw = pl*.6;
+  $("#bLost").style.width = (pl-pw) + "%"; $("#bWon").style.width = pw + "%";
+}
+rs.forEach(r => r.addEventListener("input", calc)); calc();
+
+/* ---- journey ---- */
+const J = [
+  {ic:"📞", n:"Дзвінок",
+   bad:{h:"Дзвінок «в нікуди»", p:"Клієнт телефонує — менеджер зайнятий, дзвінок пропущено. Ніхто про це не знає.", v:"Лід втрачено ще до розмови", rows:[["Статус","<span class='tag r'>Пропущено</span>"],["Хто відповів","—"],["Записано","Ніде"]]},
+   good:{h:"Кожен дзвінок = лід", p:"Телефонія розпізнає номер, автоматично створює картку та направляє на потрібного менеджера.", v:"0 втрачених дзвінків", rows:[["Статус","<span class='tag g'>Лід створено</span>"],["Менеджер","Олена К. (персональний)"],["Джерело","Реклама · Google"]]}},
+  {ic:"📝", n:"Фіксація",
+   bad:{h:"Дані — у блокноті", p:"Номер на папірці, деталі в месенджері, «потім внесу в CRM». Часто — не вносять.", v:"Контекст втрачено", rows:[["Картка в CRM","<span class='tag r'>Не створена</span>"],["Історія","У голові менеджера"],["Дубль?","Невідомо"]]},
+   good:{h:"Картка заповнена сама", p:"CRM підтягує історію спілкувань, записує дзвінок і пов'язує його з клієнтом.", v:"Весь контекст — в одному місці", rows:[["Картка","<span class='tag g'>Авто</span>"],["Запис розмови","✔ прикріплено"],["Дублі","Об'єднано"]]}},
+  {ic:"🤖", n:"AI-аналіз",
+   bad:{h:"Розмову ніхто не слухає", p:"Керівник не знає, що казав менеджер і про що домовились. Якість — «на довірі».", v:"Нуль аналітики", rows:[["Резюме","<span class='tag r'>Немає</span>"],["Оцінка дзвінка","—"],["Заперечення","Невідомо"]]},
+   good:{h:"AI робить рутину за людину", p:"Розшифровка, резюме, оцінка по скрипту та підказка наступного кроку — за секунди після дзвінка.", v:"Економія ~10 хв на кожен дзвінок", rows:[["Резюме","<span class='tag y'>Готове</span>"],["Оцінка","86 / 100"],["Наступний крок","Відправити КП"]]}},
+  {ic:"⏰", n:"Фоллоу-ап",
+   bad:{h:"«Передзвоню завтра…»", p:"Без задач і нагадувань клієнт зникає у вирі справ. Конкурент зателефонував першим.", v:"Клієнт пішов до конкурента", rows:[["Задача","<span class='tag r'>Немає</span>"],["Нагадування","—"],["Днів без контакту","9"]]},
+   good:{h:"Жоден лід не «прострочений»", p:"Автоматичні задачі, нагадування та сповіщення керівнику, якщо контакт затягується.", v:"Реакція за 5 хвилин", rows:[["Задача","<span class='tag g'>Створена автоматично</span>"],["Дедлайн","сьогодні, 16:00"],["Ескалація","Керівнику через 2 год"]]}},
+  {ic:"💰", n:"Угода",
+   bad:{h:"Невідомо, що в роботі", p:"У керівника немає цілісної картини: де застрягли угоди, хто що обіцяв, який прогноз.", v:"Прогноз «на око»", rows:[["Воронка","<span class='tag r'>Хаос</span>"],["Прогноз","≈ ?"],["Конверсія","Не вимірюється"]]},
+   good:{h:"Прозора воронка і прогноз", p:"Звіти по менеджерах, джерелах та етапах. Видно, де «вузьке місце» і що робити.", v:"Рішення на даних, не на відчуттях", rows:[["Воронка","<span class='tag g'>Під контролем</span>"],["Прогноз місяця","1,2 млн ₴"],["Конверсія","↑ 18 %"]]}}
+];
+let jm = "bad", js = 0;
+function renderJ(){
+  $("#steps").innerHTML = J.map((s,i)=>`<button class="step ${i===js?"on":""}" data-i="${i}"><span>${s.ic}</span>${i+1}. ${s.n}</button>`).join("");
+  const d = J[js][jm];
+  $("#stage").innerHTML = `<div><h3>${d.h}</h3><p>${d.p}</p><span class="verdict ${jm}">${jm==="bad"?"✖":"✔"} ${d.v}</span></div>
+   <div class="mock">${d.rows.map(r=>`<div class="row"><span>${r[0]}</span><b>${r[1]}</b></div>`).join("")}</div>`;
+  $$(".toggle button").forEach(b => { const on = b.dataset.mode===jm; b.classList.toggle("on",on); b.classList.toggle("good",on&&jm==="good"); });
+}
+$("#steps").addEventListener("click", e => { const b = e.target.closest(".step"); if(b){ js=+b.dataset.i; renderJ(); }});
+$$(".toggle button").forEach(b => b.addEventListener("click", () => { jm=b.dataset.mode; renderJ(); }));
+renderJ();
+
+/* ---- quiz ---- */
+const Q = [
+  "Ви знаєте, скільки дзвінків пропускає ваш відділ щодня?",
+  "Кожен вхідний дзвінок автоматично потрапляє в CRM?",
+  "Пропущеним клієнтам передзвонюють протягом 15 хвилин?",
+  "Ви можете швидко дізнатись, про що говорили з клієнтом (запис або резюме)?",
+  "У кожного ліда є наступна дія із чітким терміном?"
+];
+let qi = 0, qs = 0;
+function renderQ(){
+  const box = $("#quizBox");
+  if(qi >= Q.length){
+    const t = qs>=5 ? ["Ваша воронка щільна 💪","Ви вже на високому рівні. На вебінарі покажемо, як додати AI та ще підняти конверсію."]
+            : qs>=3 ? ["Є «дірки», але все виправно 🔧","Базу закладено, а частина лідів усе ж губиться. Саме тут AI та автоматизація дадуть найшвидший ефект."]
+            : ["Ліди витікають щодня 🚨","Ви, найімовірніше, втрачаєте значну частину звернень. Приходьте на вебінар — розберемо, з чого почати."];
+    box.innerHTML = `<div class="qres"><div class="score">${qs}/5</div><h3>${t[0]}</h3><p>${t[1]}</p>
+      <a class="btn" href="#register">Хочу закрити «дірки»</a><button class="btn ghost" id="again">Пройти ще раз</button></div>`;
+    $("#again").onclick = () => { qi=0; qs=0; renderQ(); };
+    return;
+  }
+  box.innerHTML = `<div class="qprog"><i style="width:${qi/Q.length*100}%"></i></div>
+    <div class="qn">Запитання ${qi+1} з ${Q.length}</div><h3>${Q[qi]}</h3>
+    <div class="ans"><button data-a="1">Так</button><button data-a="0">Ні / не знаю</button></div>`;
+  $$(".ans button",box).forEach(b => b.onclick = () => { qs += +b.dataset.a; qi++; renderQ(); });
+}
+renderQ();
+
+/* ---- form ---- */
+$("#form").addEventListener("submit", async e => {
+  e.preventDefault();
+  const f = e.target;
+  if(!f.checkValidity()){ f.reportValidity(); return; }
+  const data = Object.fromEntries(new FormData(f));
+  try{
+    if(CONFIG.formEndpoint){
+      await fetch(CONFIG.formEndpoint,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)});
+    } else { console.info("Form data (endpoint не налаштовано):", data); }
+  }catch(err){ console.error(err); }
+  $("#formBody").innerHTML = `<div class="thanks"><div class="ok">✓</div><h3>Ви в списку!</h3><p>Надіслали деталі на ${data.email}. До зустрічі ${$("#dateLabel").textContent}!</p></div>`;
+});
+</script>
+</body>
+</html>
