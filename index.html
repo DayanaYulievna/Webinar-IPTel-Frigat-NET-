@@ -235,6 +235,28 @@ form .btn{width:100%;justify-content:center}
 .th h3{font-size:22px;margin-bottom:8px}.th p{color:var(--mut)}
 @media(max-width:900px){.reg .in{grid-template-columns:1fr;padding:30px 20px}}
 
+
+/* booking modal */
+dialog{border:0;padding:0;background:none;color:var(--fg);max-width:none;max-height:none;margin:auto;overflow:visible}
+dialog::backdrop{background:rgba(2,8,16,.78);backdrop-filter:blur(8px)}
+dialog[open]{animation:dlg .35s cubic-bezier(.2,.9,.3,1.2)}
+dialog[open]::backdrop{animation:fade .3s}
+@keyframes dlg{from{opacity:0;transform:translateY(24px) scale(.96)}}
+@keyframes fade{from{opacity:0}}
+.md{width:min(440px,100vw - 28px);border-radius:26px;padding:3px;background:var(--grad);box-shadow:0 40px 100px -30px rgba(39,211,245,.5)}
+.md .in{background:linear-gradient(160deg,#0a2a45,#071a2c);border-radius:24px;padding:30px 28px 26px;position:relative}
+.md h3{font-size:22px;margin:6px 0 8px;padding-right:30px}
+.md .sub{color:var(--mut);font-size:14.5px;margin-bottom:20px}
+.md .x{position:absolute;right:14px;top:14px;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--mut);font-size:20px;line-height:1;cursor:pointer;transition:.2s}
+.md .x:hover{color:var(--fg);border-color:var(--cyan)}
+.md .when{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.md form{background:none;border:0;padding:0}
+.md .btn{width:100%;justify-content:center}
+.md .btn:disabled{opacity:.7;cursor:wait}
+.toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,160%);z-index:100;background:var(--panel2);border:1px solid var(--green);color:var(--fg);padding:14px 20px;border-radius:14px;font-weight:700;box-shadow:0 20px 50px -20px rgba(46,230,166,.6);transition:transform .5s cubic-bezier(.2,.9,.3,1.2);display:flex;gap:10px;align-items:center;max-width:calc(100vw - 28px)}
+.toast.show{transform:translate(-50%,0)}
+.toast::before{content:"✓";display:grid;place-items:center;flex:none;width:24px;height:24px;border-radius:50%;background:var(--green);color:#031018;font-weight:800;font-size:13px}
+
 footer{padding:34px 0 40px;color:var(--mut);font:500 12.5px var(--f-m);text-align:center;border-top:1px solid var(--line)}
 .mcta{position:fixed;left:12px;right:12px;bottom:12px;z-index:60;display:none;transform:translateY(130%);transition:transform .4s}
 .mcta.show{transform:none}.mcta .btn{width:100%;justify-content:center}
@@ -249,7 +271,7 @@ footer{padding:34px 0 40px;color:var(--mut);font:500 12.5px var(--f-m);text-alig
   <div class="wrap">
     <a href="#top" class="logo"><i></i>IPTel × Frigat</a>
     <nav class="nl"><a href="#loss">Втрати</a><a href="#journey">Шлях ліда</a><a href="#program">Програма</a><a href="#quiz">Тест</a><a href="#faq">FAQ</a></nav>
-    <a class="btn" href="#register">Зареєструватися</a>
+    <a class="btn" href="#register" data-book>Зареєструватися</a>
   </div>
 </header>
 
@@ -267,7 +289,7 @@ footer{padding:34px 0 40px;color:var(--mut);font:500 12.5px var(--f-m);text-alig
         <div class="chip">💻 онлайн</div>
       </div>
       <div class="cta">
-        <a class="btn" href="#register">Забронювати місце →</a>
+        <a class="btn" href="#register" data-book>Забронювати місце →</a>
         <a class="btn ghost" href="#loss">Скільки ми губимо?</a>
       </div>
       <div class="cd" aria-label="Відлік до вебінару">
@@ -406,8 +428,29 @@ footer{padding:34px 0 40px;color:var(--mut);font:500 12.5px var(--f-m);text-alig
 </section>
 </main>
 
+
+<dialog id="book" aria-labelledby="bookT">
+  <div class="md"><div class="in">
+    <button class="x" type="button" id="bookX" aria-label="Закрити">×</button>
+    <div id="bookBody">
+      <div class="lab" style="margin-bottom:10px">Бронювання місця</div>
+      <h3 id="bookT">Забронюйте місце на вебінарі</h3>
+      <p class="sub">Це займе 20 секунд. Надішлемо посилання та нагадування.</p>
+      <div class="when"><div class="chip">📅 <b class="dl">3 грудня</b></div><div class="chip">🕓 <b>16:00</b> Київ</div><div class="chip">💻 онлайн</div></div>
+      <form id="bookForm" novalidate>
+        <label for="bn">Ім'я</label><input id="bn" name="name" placeholder="Як до вас звертатися" required autocomplete="name">
+        <label for="bp">Телефон</label><input id="bp" name="phone" type="tel" placeholder="+380 __ ___ __ __" required autocomplete="tel">
+        <label for="be">Email</label><input id="be" name="email" type="email" placeholder="you@company.com" required autocomplete="email">
+        <button class="btn" type="submit">Забронювати місце →</button>
+        <p class="fine">Безкоштовно. Натискаючи кнопку, ви погоджуєтесь на обробку персональних даних.</p>
+      </form>
+    </div>
+  </div></div>
+</dialog>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
 <footer><div class="wrap">© IPTel × Frigat NET · Вебінар «CRM + телефонія + AI»</div></footer>
-<div class="mcta" id="mcta"><a class="btn" href="#register">Зареєструватися →</a></div>
+<div class="mcta" id="mcta"><a class="btn" href="#register" data-book>Зареєструватися →</a></div>
 
 <script>
 const CONFIG = {
@@ -594,7 +637,7 @@ function renderQ(){
     const t=qs>=5?["Ваша воронка щільна","Ви вже на високому рівні. На вебінарі покажемо, як додати AI та ще підняти конверсію."]
       :qs>=3?["Є «дірки», але все виправно","Базу закладено, а частина лідів усе ж губиться. Саме тут AI та автоматизація дадуть найшвидший ефект."]
       :["Ліди витікають щодня","Ви, найімовірніше, втрачаєте значну частину звернень. Приходьте на вебінар, розберемо, з чого почати."];
-    box.innerHTML=`<div class="qr"><div class="score g">${qs}/5</div><h3>${t[0]}</h3><p>${t[1]}</p><a class="btn" href="#register">Хочу закрити «дірки»</a><button class="btn ghost" id="again">Пройти ще раз</button></div>`;
+    box.innerHTML=`<div class="qr"><div class="score g">${qs}/5</div><h3>${t[0]}</h3><p>${t[1]}</p><a class="btn" href="#register" data-book>Хочу закрити «дірки»</a><button class="btn ghost" id="again">Пройти ще раз</button></div>`;
     $("#again").onclick=()=>{qi=0;qs=0;renderQ()};return;
   }
   box.innerHTML=`<div class="qb">${Q.map((_,i)=>`<i class="${i<qi?"d":""}"></i>`).join("")}</div><div class="qn">Запитання ${qi+1} з ${Q.length}</div><h3>${Q[qi]}</h3><div class="an"><button data-a="1">Так</button><button data-a="0">Ні / не знаю</button></div>`;
@@ -602,14 +645,47 @@ function renderQ(){
 }
 renderQ();
 
-/* ============ FORM ============ */
+/* ============ FORM + BOOKING MODAL ============ */
+async function sendLead(data,source){
+  try{ if(CONFIG.formEndpoint){await fetch(CONFIG.formEndpoint,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({...data,source})})}else{console.info("Lead (endpoint не налаштовано):",{...data,source})} }catch(err){console.error(err)}
+}
+const esc=s=>String(s).replace(/[<>&"]/g,"");
 $("#form").addEventListener("submit",async e=>{
   e.preventDefault();const f=e.target;
   if(!f.checkValidity()){f.reportValidity();return}
   const data=Object.fromEntries(new FormData(f));
-  try{ if(CONFIG.formEndpoint){await fetch(CONFIG.formEndpoint,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)})}else{console.info("Form data (endpoint не налаштовано):",data)} }catch(err){console.error(err)}
-  $("#formBody").innerHTML=`<div class="th"><div class="ok">✓</div><h3>Ви в списку!</h3><p>Надіслали деталі на ${data.email}. До зустрічі ${$("#dateLabel").textContent}!</p></div>`;
+  await sendLead(data,"form");
+  $("#formBody").innerHTML=`<div class="th"><div class="ok">✓</div><h3>Ви в списку!</h3><p>Надіслали деталі на ${esc(data.email)}. До зустрічі ${$("#dateLabel").textContent}!</p></div>`;
 });
+
+const dlg=$("#book"),bookBody=$("#bookBody"),bookHTML=bookBody.innerHTML;
+$$(".dl").forEach(el=>el.textContent=$("#dateLabel").textContent);
+let toastT,closeT;
+function toast(msg){const t=$("#toast");t.textContent=msg;t.classList.add("show");clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove("show"),4500)}
+function closeBook(){clearTimeout(closeT);if(dlg.open)dlg.close()}
+function openBook(){
+  if(typeof dlg.showModal!=="function"){location.hash="#register";return}
+  clearTimeout(closeT);
+  bookBody.innerHTML=bookHTML;bindBook();
+  if(!dlg.open)dlg.showModal();
+  setTimeout(()=>$("#bn").focus(),50);
+}
+function done(){closeBook();toast("Ви в списку! Деталі вже на пошті")}
+function bindBook(){
+  $("#bookForm").addEventListener("submit",async e=>{
+    e.preventDefault();const f=e.target;
+    if(!f.checkValidity()){f.reportValidity();return}
+    const data=Object.fromEntries(new FormData(f));
+    const btn=f.querySelector("button[type=submit]");btn.disabled=true;btn.textContent="Відправляємо…";
+    await sendLead(data,"modal");
+    bookBody.innerHTML=`<div class="th"><div class="ok">✓</div><h3>Місце заброньовано!</h3><p>Надіслали деталі на пошту. До зустрічі ${$("#dateLabel").textContent} о 16:00.</p><button class="btn" type="button" id="bookBack" style="margin-top:20px">Продовжити перегляд сайту</button></div>`;
+    $("#bookBack").onclick=done;
+    closeT=setTimeout(done,3500);
+  });
+}
+document.addEventListener("click",e=>{const a=e.target.closest("[data-book]");if(a){e.preventDefault();openBook()}});
+$("#bookX").addEventListener("click",closeBook);
+dlg.addEventListener("click",e=>{if(e.target===dlg)closeBook()});
 </script>
 </body>
 </html>
