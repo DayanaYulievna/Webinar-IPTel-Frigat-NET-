@@ -279,6 +279,30 @@ footer{padding:34px 0 40px;color:var(--mut);font:500 12.5px var(--f-m);text-alig
 .mcta.show{transform:none}.mcta .btn{width:100%;justify-content:center}
 @media(max-width:700px){.mcta{display:block}section{padding:68px 0}}
 
+/* about + partnership + takeaway */
+.about{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.about p{color:var(--mut);font-size:17px;max-width:580px;margin-bottom:14px}
+.for{margin-top:24px;padding-top:20px;border-top:1px solid var(--line);max-width:580px}
+.for .k{font:600 12px var(--f-m);text-transform:uppercase;letter-spacing:.12em;color:var(--cyan);margin-bottom:12px}
+.for ul{list-style:none;padding:0;display:grid;gap:10px;font-size:15.5px}
+.for li{display:flex;gap:10px}.for li::before{content:"→";color:var(--green);font-family:var(--f-m)}
+.duo{display:grid;grid-template-columns:1fr auto 1fr;gap:0;align-items:stretch;position:relative}
+.co{border:1px solid var(--line);border-radius:20px;padding:24px 20px;background:linear-gradient(180deg,var(--panel),var(--bg2));display:flex;flex-direction:column;gap:8px}
+.co span{font:600 11.5px var(--f-m);letter-spacing:.14em;color:var(--cyan)}
+.co b{font:800 28px var(--f-d);letter-spacing:-.02em}
+.co p{color:var(--mut);font-size:14px;margin:0;max-width:none}
+.xx{align-self:center;width:46px;height:46px;border-radius:50%;background:var(--btn);color:#031018;font:800 24px/46px var(--f-m);text-align:center;margin:0 -14px;position:relative;z-index:2;box-shadow:0 0 0 6px var(--bg),0 0 28px rgba(46,230,166,.5);animation:ring 2.4s infinite}
+.res{grid-column:1/-1;margin-top:22px;position:relative;border:1.5px dashed var(--line);border-radius:16px;padding:18px 20px 18px 54px;font-weight:600;font-size:15px;color:var(--fg);background:var(--glass)}
+.res i{position:absolute;left:18px;top:50%;width:22px;height:22px;margin-top:-11px;border-radius:50%;background:var(--grad)}
+.take{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:34px}
+.tk{border:1px solid var(--line);border-radius:18px;padding:22px;background:var(--glass);transition:transform .3s,border-color .3s}
+.tk:hover{transform:translateY(-4px);border-color:var(--cyan)}
+.tk span{font:600 11.5px var(--f-m);letter-spacing:.14em;color:var(--cyan)}
+.tk h3{font-size:16px;margin:10px 0 8px;line-height:1.25}
+.tk p{color:var(--mut);font-size:14.5px}
+@media(max-width:960px){.about{grid-template-columns:1fr;gap:36px}.take{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.take{grid-template-columns:1fr}.duo{grid-template-columns:1fr}.xx{margin:-12px auto}.co b{font-size:24px}}
+
 /* theme toggle + light-theme finishing */
 .nr{display:flex;align-items:center;gap:10px}
 .tt{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--glass);color:var(--fg);display:grid;place-items:center;cursor:pointer;transition:.25s}
@@ -304,7 +328,7 @@ footer{padding:34px 0 40px;color:var(--mut);font:500 12.5px var(--f-m);text-alig
 <header class="nav" id="nav">
   <div class="wrap">
     <a href="#top" class="logo"><i></i>IPTel × Frigat</a>
-    <nav class="nl"><a href="#loss">Втрати</a><a href="#journey">Шлях ліда</a><a href="#program">Програма</a><a href="#quiz">Тест</a><a href="#faq">FAQ</a></nav>
+    <nav class="nl"><a href="#about">Про вебінар</a><a href="#speakers">Спікери</a><a href="#loss">Втрати</a><a href="#journey">Рішення</a><a href="#faq">FAQ</a></nav>
     <div class="nr">
       <button class="tt" id="theme" type="button" aria-label="Змінити тему" title="Світла / темна тема">
         <svg class="sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
@@ -359,11 +383,76 @@ footer{padding:34px 0 40px;color:var(--mut);font:500 12.5px var(--f-m);text-alig
 
 <div class="tick" aria-hidden="true"><div id="tickIn"></div></div>
 
+<section id="about">
+  <div class="wrap">
+    <div class="about">
+      <div>
+        <div class="lab rv">// Про вебінар</div>
+        <h2 class="rv">Про що цей вебінар <span class="g">простими словами</span></h2>
+        <p class="rv">Ми, Frigat та IPTel, розповімо, як побудувати відділ продажів так, щоб звернення клієнтів не губилися на шляху від першого дзвінка до угоди.</p>
+        <p class="rv">Візьмемо типові ситуації: менеджер не встиг відповісти, забув передзвонити, не записав домовленість. І покажемо на прикладах, як телефонія, CRM та аналіз розмов закривають ці місця.</p>
+        <p class="rv">Це розмова про досвід і практику, а не про «автоматизуємо все». Нам важливо, щоб прийшли ті, кому тема справді цікава і хто зможе застосувати почуте у своєму відділі.</p>
+        <div class="for rv">
+          <div class="k">Для кого</div>
+          <ul>
+            <li>Власники бізнесу та керівники відділів продажів</li>
+            <li>Ті, у кого вже є CRM і телефонія, але немає повної картини</li>
+            <li>Ті, хто тільки обирає, з чого почати</li>
+          </ul>
+        </div>
+      </div>
+      <div class="duo rv" role="img" aria-label="Frigat і IPTel об'єднали досвід: CRM і телефонія">
+        <div class="co"><span>CRM</span><b>Frigat</b><p>Розробка та впровадження CRM і автоматизації продажів</p></div>
+        <div class="xx">+</div>
+        <div class="co"><span>ТЕЛЕФОНІЯ</span><b>IPTel</b><p>Телефонія та контакт-центр для бізнесу</p></div>
+        <div class="res"><i></i>Дві компанії об'єднали досвід, щоб показати цілісну картину: від першого дзвінка до закритої угоди</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="program" style="padding-top:20px">
+  <div class="wrap">
+    <div class="lab rv">// Програма</div>
+    <h2 class="rv">Про що <span class="g">поговоримо</span></h2>
+    <div class="rows">
+      <article class="row rv"><div class="t">ЗВ'ЯЗОК</div><div><h3>Телефонія, що працює на продажі</h3><p>Як перетворити кожен дзвінок на дані.</p></div><ul><li>Автоматичне створення ліда з дзвінка</li><li>Маршрутизація на «свого» менеджера</li><li>Пропущені: повернути за 5 хвилин</li></ul></article>
+      <article class="row rv"><div class="t">ДАНІ</div><div><h3>CRM як єдине джерело правди</h3><p>Воронка, у якій нічого не губиться.</p></div><ul><li>Етапи, задачі, нагадування</li><li>Контроль дисципліни без мікроменеджменту</li><li>Звіти, які читаються за 2 хвилини</li></ul></article>
+      <article class="row rv"><div class="t">ЗНАННЯ</div><div><h3>Розмови, які можна перевірити</h3><p>Що сказали клієнту, які були заперечення і про що домовились.</p></div><ul><li>Запис і розшифровка кожної розмови</li><li>Оцінка дзвінка за вашим скриптом</li><li>Наступний крок одразу в картці клієнта</li></ul></article>
+    </div>
+  </div>
+</section>
+
+<section id="takeaway" style="padding-top:20px">
+  <div class="wrap">
+    <div class="lab rv">// Результат</div>
+    <h2 class="rv">Що ви заберете <span class="g">з собою</span></h2>
+    <div class="take">
+      <div class="tk rv"><span>ЧЕК-ЛІСТ</span><h3>«10 місць, де губляться ліди»</h3><p>Пройдіть по ньому зі своєю командою й побачите слабкі місця у своїй воронці.</p></div>
+      <div class="tk rv"><span>ЗАПИС</span><h3>Весь ефір</h3><p>Можна переглянути, коли зручно, і показати колегам.</p></div>
+      <div class="tk rv"><span>ПРЕЗЕНТАЦІЯ</span><h3>Схеми та приклади</h3><p>Усе, що покажемо на екрані, у вигляді матеріалів.</p></div>
+      <div class="tk rv"><span>ВІДПОВІДІ</span><h3>На ваші запитання</h3><p>Задайте їх у реєстрації або в чаті, експерти відповідять наживо.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="speakers" style="padding-top:20px">
+  <div class="wrap">
+    <div class="lab rv">// Спікери</div>
+    <h2 class="rv">Хто <span class="g">проведе</span> вебінар</h2>
+    <div class="spk">
+      <!-- TODO: замінити на реальних спікерів та фото -->
+      <div class="sp rv"><div class="ava">І</div><div><h3>Ім'я Прізвище</h3><small>IPTel · телефонія</small><p>Допомагає компаніям будувати контакт-центри та інтегрувати телефонію з бізнес-процесами.</p></div></div>
+      <div class="sp rv"><div class="ava">F</div><div><h3>Ім'я Прізвище</h3><small>Frigat · CRM</small><p>Впроваджує CRM та автоматизацію продажів, знає, де в типових воронках «тече».</p></div></div>
+    </div>
+  </div>
+</section>
+
 <section id="loss">
   <div class="wrap">
     <div class="lab rv">// Втрати</div>
-    <h2 class="rv">Скільки грошей <span class="g">витікає</span> з вашої воронки?</h2>
-    <p class="lead rv">Посуньте повзунки й побачите, що коштують пропущені дзвінки та забуті заявки.</p>
+    <h2 class="rv">Чи рахували ви, скільки грошей <span class="g">витікає</span> з воронки?</h2>
+    <p class="lead rv">Конверсію зазвичай рахують від звернень, що дійшли до CRM. А скільки не дійшло? Кожне таке звернення вже оплачене: рекламою, сайтом або роботою менеджера. Посуньте повзунки й побачите суму.</p>
     <div class="calc">
       <div class="pn rv">
         <div class="fld"><label for="leads">Звернень на місяць <output id="oLeads"></output></label><input type="range" id="leads" min="20" max="1000" step="10" value="200"></div>
@@ -385,9 +474,9 @@ footer{padding:34px 0 40px;color:var(--mut);font:500 12.5px var(--f-m);text-alig
 
 <section id="journey" style="padding-top:20px">
   <div class="wrap">
-    <div class="lab rv">// Шлях ліда</div>
-    <h2 class="rv">Один лід. <span class="g">Два сценарії.</span></h2>
-    <p class="lead rv">Перемикайте «Як зараз» і «Як має бути», клікайте по кроках і дивіться, де саме лід зникає.</p>
+    <div class="lab rv">// Рішення</div>
+    <h2 class="rv">Як телефонія, CRM і аналіз розмов <span class="g">закривають ці дірки</span></h2>
+    <p class="lead rv">Один і той самий лід у двох сценаріях. Перемикайте «Як зараз» і «Як має бути», клікайте по кроках і дивіться, що змінюється.</p>
     <div class="jr rv">
       <div class="jh"><b>Від першого дзвінка до угоди</b>
         <div class="tg" role="tablist"><button class="on" data-mode="bad" role="tab">Як зараз</button><button data-mode="good" role="tab">Як має бути</button></div>
@@ -398,36 +487,12 @@ footer{padding:34px 0 40px;color:var(--mut);font:500 12.5px var(--f-m);text-alig
   </div>
 </section>
 
-<section id="program" style="padding-top:20px">
-  <div class="wrap">
-    <div class="lab rv">// Програма</div>
-    <h2 class="rv">Що ви винесете <span class="g">з вебінару</span></h2>
-    <div class="rows">
-      <article class="row rv"><div class="t">ЗВ'ЯЗОК</div><div><h3>Телефонія, що працює на продажі</h3><p>Як перетворити кожен дзвінок на дані.</p></div><ul><li>Автоматичне створення ліда з дзвінка</li><li>Маршрутизація на «свого» менеджера</li><li>Пропущені: повернути за 5 хвилин</li></ul></article>
-      <article class="row rv"><div class="t">ДАНІ</div><div><h3>CRM як єдине джерело правди</h3><p>Воронка, у якій нічого не губиться.</p></div><ul><li>Етапи, задачі, нагадування</li><li>Контроль дисципліни без мікроменеджменту</li><li>Звіти, які читаються за 2 хвилини</li></ul></article>
-      <article class="row rv"><div class="t">ЗНАННЯ</div><div><h3>Розмови, які можна перевірити</h3><p>Що сказали клієнту, які були заперечення і про що домовились.</p></div><ul><li>Запис і розшифровка кожної розмови</li><li>Оцінка дзвінка за вашим скриптом</li><li>Наступний крок одразу в картці клієнта</li></ul></article>
-    </div>
-  </div>
-</section>
-
 <section id="quiz" style="padding-top:20px">
   <div class="wrap">
     <div class="lab rv">// Діагностика</div>
     <h2 class="rv">Де ви <span class="g">губите ліди?</span></h2>
     <p class="lead rv">5 запитань за 30 секунд. Отримаєте оцінку «щільності» вашої воронки.</p>
     <div class="qz rv" id="quizBox"></div>
-  </div>
-</section>
-
-<section id="speakers" style="padding-top:20px">
-  <div class="wrap">
-    <div class="lab rv">// Спікери</div>
-    <h2 class="rv">Хто <span class="g">проведе</span> вебінар</h2>
-    <div class="spk">
-      <!-- TODO: замінити на реальних спікерів та фото -->
-      <div class="sp rv"><div class="ava">І</div><div><h3>Ім'я Прізвище</h3><small>IPTel · телефонія</small><p>Допомагає компаніям будувати контакт-центри та інтегрувати телефонію з бізнес-процесами.</p></div></div>
-      <div class="sp rv"><div class="ava">F</div><div><h3>Ім'я Прізвище</h3><small>Frigat · CRM</small><p>Впроваджує CRM та автоматизацію продажів, знає, де в типових воронках «тече».</p></div></div>
-    </div>
   </div>
 </section>
 
