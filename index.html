@@ -8,7 +8,7 @@
 <meta name="description" content="Безкоштовний вебінар від IPTel та Frigat: як з'єднати CRM, телефонію та AI, щоб жоден лід не загубився.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 /* Концепція: «пульт керування лідами» — темна сцена, сітка, пайплайн-лінія вздовж сторінки.
    Палітра: синій → блакитний → зелений. Warn (червоний) — тільки для «втрачено». */
@@ -17,7 +17,7 @@
   --fg:#e9f5ff; --mut:#8fb0c9;
   --blue:#2f7bff; --cyan:#27d3f5; --green:#2ee6a6; --warn:#ff6b6b;
   --grad:linear-gradient(90deg,#2f7bff,#27d3f5 55%,#2ee6a6);
-  --f-d:'Unbounded',system-ui,sans-serif; --f-m:'JetBrains Mono',ui-monospace,Menlo,monospace; --f-b:'Manrope',system-ui,sans-serif;
+  --f-d:'Onest',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif; --f-m:'Onest',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif; --f-b:'Onest',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
   --glass:rgba(4,16,28,.5); --glass2:rgba(4,16,28,.6); --navbg:rgba(4,16,28,.72); --tickbg:rgba(7,26,44,.7); --chipbg:rgba(10,34,54,.6);
   --mA:#071a2c; --mB:#0a2a45; --ph:#5f7f99; --tagc:#8ab4ff;
   --g1:rgba(47,123,255,.28); --g2:rgba(39,211,245,.12); --g3:rgba(46,230,166,.12); --gridc:rgba(39,211,245,.045);
@@ -87,44 +87,20 @@ h2{font-size:clamp(25px,3.6vw,40px);margin-bottom:16px}
 
 /* hero */
 .hero{padding:48px 0 70px}
-.hero .wrap{display:grid;grid-template-columns:1.02fr .98fr;gap:44px;align-items:center}
-.hero h1{font-size:clamp(26px,3.5vw,46px);margin-bottom:22px}
+.hero .wrap{display:grid;grid-template-columns:1.3fr .7fr;gap:48px;align-items:center}
+.hero h1{font-size:clamp(36px,5.4vw,72px);line-height:1.06;margin-bottom:24px}
 .hero .lead{margin-bottom:26px}
 .meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
 .chip{font:500 13px var(--f-m);padding:8px 12px;border:1px solid var(--line);border-radius:6px;background:var(--chipbg);color:var(--fg)}
 .chip b{color:var(--green);font-weight:600}
 .cta{display:flex;gap:12px;flex-wrap:wrap}
-.cd{display:flex;align-items:center;gap:14px;margin-top:30px;font-family:var(--f-m)}
+.cd{display:flex;align-items:center;gap:14px;font-family:var(--f-m)}
 .cd small{color:var(--mut);font-size:12px;text-transform:uppercase;letter-spacing:.12em;max-width:70px;line-height:1.3}
 .cd div{display:flex;gap:8px}
 .cd span{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px 10px;text-align:center;min-width:56px}
 .cd b{display:block;font-size:22px;font-variant-numeric:tabular-nums;color:var(--cyan)}
 .cd em{font-style:normal;font-size:10px;color:var(--mut);text-transform:uppercase;letter-spacing:.1em}
 @media(max-width:960px){.hero .wrap{grid-template-columns:1fr}}
-
-/* game rig */
-.rig{background:linear-gradient(180deg,var(--panel),var(--bg2));border:1px solid var(--line);border-radius:22px;padding:18px;position:relative;box-shadow:0 30px 80px -30px var(--shd)}
-.rig-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
-.rig .lab{margin:0}
-.sw{display:flex;align-items:center;gap:10px;background:var(--bg);border:1px solid var(--line);border-radius:99px;padding:6px 14px 6px 6px;color:var(--fg);font:600 12.5px var(--f-m);cursor:pointer;transition:.25s}
-.sw i{width:34px;height:20px;border-radius:99px;background:var(--line);position:relative;transition:.25s}
-.sw i::after{content:"";position:absolute;left:3px;top:3px;width:14px;height:14px;border-radius:50%;background:#fff;transition:.25s}
-.sw[aria-pressed=true]{border-color:var(--green)}
-.sw[aria-pressed=true] i{background:var(--green)}
-.sw[aria-pressed=true] i::after{transform:translateX(14px);background:#031018}
-.sw.hint{animation:ring 1.6s infinite}
-@keyframes ring{0%{box-shadow:0 0 0 0 rgba(46,230,166,.6)}100%{box-shadow:0 0 0 14px rgba(46,230,166,0)}}
-.st{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px}
-.st div{border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:var(--glass)}
-.st small{font:500 11px var(--f-m);text-transform:uppercase;letter-spacing:.08em;color:var(--mut);display:block}
-.st b{font:700 24px var(--f-m);font-variant-numeric:tabular-nums}
-.st .c b{color:var(--green)}.st .l b{color:var(--warn)}.st .p b{color:var(--cyan)}
-#game{width:100%;height:340px;border-radius:14px;background:var(--glass);border:1px solid var(--line);cursor:crosshair;touch-action:manipulation}
-.rig-f{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-top:10px;font:500 12.5px var(--f-m);color:var(--mut)}
-.rig-f button{background:none;border:0;color:var(--cyan);font:inherit;cursor:pointer;text-decoration:underline}
-.start{position:absolute;inset:auto 18px 66px 18px;top:130px;display:none;place-items:center;z-index:2}
-.start.on{display:grid}
-@media(max-width:560px){#game{height:300px}}
 
 /* ticker */
 .tick{border-block:1px solid var(--line);background:var(--tickbg);overflow:hidden;padding:14px 0;font:600 13px var(--f-m);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
@@ -303,6 +279,32 @@ footer{padding:34px 0 40px;color:var(--mut);font:500 12.5px var(--f-m);text-alig
 @media(max-width:960px){.about{grid-template-columns:1fr;gap:36px}.take{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.take{grid-template-columns:1fr}.duo{grid-template-columns:1fr}.xx{margin:-12px auto}.co b{font-size:24px}}
 
+/* readable type: один шрифт, без «технічних» капсів з великим розрядкою */
+@keyframes ring{0%{box-shadow:0 0 0 0 rgba(46,230,166,.6)}100%{box-shadow:0 0 0 14px rgba(46,230,166,0)}}
+h1,h2,h3{font-weight:800;letter-spacing:-.025em}
+.h1sub{display:block;margin-top:18px;font-size:clamp(20px,2.3vw,30px);font-weight:600;letter-spacing:-.01em;color:var(--mut)}
+.lab{font-size:14px;font-weight:700;letter-spacing:.04em}
+.logo{font-size:18px;font-weight:800;letter-spacing:-.01em}
+.nl{font-size:15px;font-weight:600;text-transform:none;letter-spacing:0;gap:30px}
+.chip{font-size:14px;font-weight:600}
+.tick{font-size:15px;font-weight:700;letter-spacing:.01em;text-transform:none}
+.out .k,.qn,.for .k,form label{font-size:13.5px;font-weight:700;letter-spacing:.02em;text-transform:none}
+.jh b{font-size:16px;font-weight:700;letter-spacing:0;text-transform:none;color:var(--fg)}
+.row .t,.co span,.tk span{font-size:13px;font-weight:700;letter-spacing:.06em}
+.cd em{font-size:11px;letter-spacing:.04em}
+.leg,.fld output,.mk .r b,footer{font-size:14px}
+.tag{font-size:12.5px}.vd{font-size:14px}.sp small{font-size:14px}
+.big,.score,.cd b,.fld output{font-variant-numeric:tabular-nums}
+.big,.score{font-weight:800}
+.co b{font-weight:800}
+.evc{border:1px solid var(--line);border-radius:22px;padding:28px;background:linear-gradient(180deg,var(--panel),var(--bg2));box-shadow:0 30px 80px -30px var(--shd)}
+.evh{font-size:13.5px;font-weight:700;letter-spacing:.04em;color:var(--cyan);margin-bottom:8px}
+.evd b{display:block;font-size:clamp(30px,3.2vw,40px);font-weight:800;line-height:1.1;letter-spacing:-.02em}
+.evd span{color:var(--mut);font-size:17px;font-weight:600}
+.evl{list-style:none;padding:0;margin:20px 0 24px;display:grid;gap:9px;font-size:15.5px;padding-top:20px;border-top:1px solid var(--line)}
+.evl li{display:flex;gap:10px}.evl li::before{content:"→";color:var(--green);font-weight:700}
+:root[data-theme="light"] .evc{box-shadow:0 24px 60px -36px rgba(29,94,255,.5)}
+
 /* theme toggle + light-theme finishing */
 .nr{display:flex;align-items:center;gap:10px}
 .tt{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--glass);color:var(--fg);display:grid;place-items:center;cursor:pointer;transition:.25s}
@@ -344,39 +346,23 @@ footer{padding:34px 0 40px;color:var(--mut);font:500 12.5px var(--f-m);text-alig
   <div class="wrap">
     <div>
       <div class="lab">Безкоштовний вебінар</div>
-      <h1>CRM + телефонія + AI: як побудувати відділ продажів, <span class="g">який не губить ліди</span></h1>
+      <h1>Як побудувати відділ продажів, <span class="g">який не губить ліди</span><span class="h1sub">CRM + телефонія + AI</span></h1>
       <p class="lead">Покажемо, як з'єднати дзвінки, CRM та аналіз розмов в одну систему: кожне звернення потрапляє в роботу, а менеджери продають, а не ведуть таблички.</p>
-      <div class="meta">
-        <div class="chip">📅 <b id="dateLabel">3 грудня</b></div>
-        <div class="chip">🕓 <b>16:00</b> Київ</div>
-        <div class="chip">⏱ <b>60</b> хв + Q&amp;A</div>
-        <div class="chip">💻 онлайн</div>
-      </div>
       <div class="cta">
         <a class="btn" href="#register" data-book>Забронювати місце →</a>
         <a class="btn ghost" href="#loss">Скільки ми губимо?</a>
       </div>
+    </div>
+    <aside class="evc" aria-label="Дата і час вебінару">
+      <div class="evh">Ефір</div>
+      <div class="evd"><b id="dateLabel">3 грудня</b><span>16:00 за Києвом</span></div>
+      <ul class="evl"><li>60 хвилин + відповіді на запитання</li><li>Онлайн, посилання надішлемо на пошту</li><li>Участь безкоштовна</li></ul>
+      <div class="evh" style="margin-bottom:10px">До початку</div>
       <div class="cd" aria-label="Відлік до вебінару">
-        <small>до ефіру</small>
         <div>
           <span><b data-u="d">00</b><em>днів</em></span><span><b data-u="h">00</b><em>год</em></span><span><b data-u="m">00</b><em>хв</em></span><span><b data-u="s">00</b><em>сек</em></span>
         </div>
       </div>
-    </div>
-
-    <aside class="rig" aria-label="Гра: спіймай ліди">
-      <div class="rig-top">
-        <div class="lab">Гра · спіймай ліди</div>
-        <button class="sw" id="auto" aria-pressed="false"><i></i><span>CRM + телефонія + AI</span></button>
-      </div>
-      <div class="st">
-        <div class="c"><small>У CRM</small><b id="sC">0</b></div>
-        <div class="l"><small>Втрачено</small><b id="sL">0</b></div>
-        <div class="p"><small>Збережено</small><b id="sP">—</b></div>
-      </div>
-      <canvas id="game" aria-label="Ліди падають вниз. Клікайте по них, щоб зберегти в CRM."></canvas>
-      <div class="rig-f"><span id="hint">Клікай по лідах, поки не впали</span><button id="reset" type="button">скинути</button></div>
-      <div class="start" id="start"><button class="btn" id="startBtn" type="button">▶ Запустити</button></div>
     </aside>
   </div>
 </section>
@@ -387,7 +373,7 @@ footer{padding:34px 0 40px;color:var(--mut);font:500 12.5px var(--f-m);text-alig
   <div class="wrap">
     <div class="about">
       <div>
-        <div class="lab rv">// Про вебінар</div>
+        <div class="lab rv">Про вебінар</div>
         <h2 class="rv">Про що цей вебінар <span class="g">простими словами</span></h2>
         <p class="rv">Ми, Frigat та IPTel, розповімо, як побудувати відділ продажів так, щоб звернення клієнтів не губилися на шляху від першого дзвінка до угоди.</p>
         <p class="rv">Візьмемо типові ситуації: менеджер не встиг відповісти, забув передзвонити, не записав домовленість. І покажемо на прикладах, як телефонія, CRM та аналіз розмов закривають ці місця.</p>
@@ -413,7 +399,7 @@ footer{padding:34px 0 40px;color:var(--mut);font:500 12.5px var(--f-m);text-alig
 
 <section id="program" style="padding-top:20px">
   <div class="wrap">
-    <div class="lab rv">// Програма</div>
+    <div class="lab rv">Програма</div>
     <h2 class="rv">Про що <span class="g">поговоримо</span></h2>
     <div class="rows">
       <article class="row rv"><div class="t">ЗВ'ЯЗОК</div><div><h3>Телефонія, що працює на продажі</h3><p>Як перетворити кожен дзвінок на дані.</p></div><ul><li>Автоматичне створення ліда з дзвінка</li><li>Маршрутизація на «свого» менеджера</li><li>Пропущені: повернути за 5 хвилин</li></ul></article>
@@ -425,7 +411,7 @@ footer{padding:34px 0 40px;color:var(--mut);font:500 12.5px var(--f-m);text-alig
 
 <section id="takeaway" style="padding-top:20px">
   <div class="wrap">
-    <div class="lab rv">// Результат</div>
+    <div class="lab rv">Результат</div>
     <h2 class="rv">Що ви заберете <span class="g">з собою</span></h2>
     <div class="take">
       <div class="tk rv"><span>ЧЕК-ЛІСТ</span><h3>«10 місць, де губляться ліди»</h3><p>Пройдіть по ньому зі своєю командою й побачите слабкі місця у своїй воронці.</p></div>
@@ -438,7 +424,7 @@ footer{padding:34px 0 40px;color:var(--mut);font:500 12.5px var(--f-m);text-alig
 
 <section id="speakers" style="padding-top:20px">
   <div class="wrap">
-    <div class="lab rv">// Спікери</div>
+    <div class="lab rv">Спікери</div>
     <h2 class="rv">Хто <span class="g">проведе</span> вебінар</h2>
     <div class="spk">
       <!-- TODO: замінити на реальних спікерів та фото -->
@@ -450,7 +436,7 @@ footer{padding:34px 0 40px;color:var(--mut);font:500 12.5px var(--f-m);text-alig
 
 <section id="loss">
   <div class="wrap">
-    <div class="lab rv">// Втрати</div>
+    <div class="lab rv">Втрати</div>
     <h2 class="rv">Чи рахували ви, скільки грошей <span class="g">витікає</span> з воронки?</h2>
     <p class="lead rv">Конверсію зазвичай рахують від звернень, що дійшли до CRM. А скільки не дійшло? Кожне таке звернення вже оплачене: рекламою, сайтом або роботою менеджера. Посуньте повзунки й побачите суму.</p>
     <div class="calc">
@@ -474,7 +460,7 @@ footer{padding:34px 0 40px;color:var(--mut);font:500 12.5px var(--f-m);text-alig
 
 <section id="journey" style="padding-top:20px">
   <div class="wrap">
-    <div class="lab rv">// Рішення</div>
+    <div class="lab rv">Рішення</div>
     <h2 class="rv">Як телефонія, CRM і аналіз розмов <span class="g">закривають ці дірки</span></h2>
     <p class="lead rv">Один і той самий лід у двох сценаріях. Перемикайте «Як зараз» і «Як має бути», клікайте по кроках і дивіться, що змінюється.</p>
     <div class="jr rv">
@@ -489,7 +475,7 @@ footer{padding:34px 0 40px;color:var(--mut);font:500 12.5px var(--f-m);text-alig
 
 <section id="quiz" style="padding-top:20px">
   <div class="wrap">
-    <div class="lab rv">// Діагностика</div>
+    <div class="lab rv">Діагностика</div>
     <h2 class="rv">Де ви <span class="g">губите ліди?</span></h2>
     <p class="lead rv">5 запитань за 30 секунд. Отримаєте оцінку «щільності» вашої воронки.</p>
     <div class="qz rv" id="quizBox"></div>
@@ -498,7 +484,7 @@ footer{padding:34px 0 40px;color:var(--mut);font:500 12.5px var(--f-m);text-alig
 
 <section id="faq" style="padding-top:20px">
   <div class="wrap">
-    <div class="lab rv">// FAQ</div>
+    <div class="lab rv">FAQ</div>
     <h2 class="rv">Часті <span class="g">питання</span></h2>
     <div class="faq rv">
       <details><summary>Вебінар справді безкоштовний?</summary><p>Так, участь безкоштовна. Потрібна лише реєстрація, щоб ми надіслали посилання.</p></details>
@@ -601,100 +587,6 @@ tick();setInterval(tick,1000);
   const items=[["x","Пропущений дзвінок"],["a","Лід у CRM"],["v","Задача менеджеру · 5 хв"],["a","Підсумок розмови в картці"],["x","«Передзвоню завтра…»"],["v","Угода просунулась"],["a","Запис розмови прикріплено"],["v","Жоден лід не загублено"]];
   const html=items.map(i=>`<span class="${i[0]}">${i[1]}</span>`).join("");
   $("#tickIn").innerHTML=html+html;
-})();
-
-/* ============ GAME ============ */
-(function(){
-  const cv=$("#game"),ctx=cv.getContext("2d");
-  let W=0,H=0,dpr=1,leads=[],fx=[],auto=false,caught=0,lost=0,elapsed=0,spawnT=.3,last=0,raf=0,visible=false,armed=!reduce,beamPulse=0;
-  const codes=["50","63","66","67","68","73","93","95","96","97","98","99"];
-  const C={};
-  function readC(){const s=getComputedStyle(document.documentElement),g=n=>s.getPropertyValue(n).trim();C.cyan=g("--cyan");C.green=g("--green");C.warn=g("--warn");C.panel=g("--panel2");C.fg=g("--fg");C.mut=g("--mut")}
-  readC();
-  new MutationObserver(()=>{readC();draw()}).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
-  function size(){const r=cv.getBoundingClientRect();dpr=Math.min(2,devicePixelRatio||1);W=r.width;H=r.height;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0)}
-  new ResizeObserver(size).observe(cv);size();
-  const rr=(x,y,w,h,r)=>{ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath()};
-  const beamY=()=>H*.42, drainY=()=>H-26, PW=134, PH=34;
-  function spawn(){
-    const n=()=>String(Math.floor(Math.random()*90)+10);
-    leads.push({x:PW/2+10+Math.random()*(W-PW-20),y:-PH,vy:62+Math.random()*40+Math.min(elapsed*1.6,70),ph:Math.random()*6,st:"live",life:0,txt:`0${codes[Math.floor(Math.random()*codes.length)]} ••• ${n()} ${n()}`});
-  }
-  function stats(){
-    $("#sC").textContent=caught;$("#sL").textContent=lost;
-    const t=caught+lost;$("#sP").textContent=t?Math.round(caught/t*100)+"%":"—";
-    const hint=$("#hint");
-    if(auto)hint.textContent="Автопілот ловить кожен лід. Видно різницю?";
-    else if(lost>=8&&!$("#auto").classList.contains("hint")&&!auto){$("#auto").classList.add("hint");hint.textContent="Не встигаєш? Увімкни CRM + телефонію + AI ↗"}
-  }
-  function catchLead(l,viaAuto){l.st="caught";l.life=0;l.auto=viaAuto;caught++;stats()}
-  function step(dt){
-    elapsed+=dt;spawnT-=dt;
-    if(spawnT<=0){spawn();spawnT=Math.max(.42,1.05-elapsed*.012)+Math.random()*.35}
-    for(const l of leads){
-      if(l.st==="live"){
-        l.y+=l.vy*dt;l.ph+=dt*2;l.x+=Math.sin(l.ph)*10*dt;
-        if(auto&&l.y>=beamY())catchLead(l,true);
-        else if(l.y>=drainY()){l.st="lost";l.life=0;lost++;stats()}
-      }else{l.life+=dt;if(l.st==="caught")l.y-=40*dt}
-    }
-    leads=leads.filter(l=>l.st==="live"||l.life<.7);
-    fx=fx.filter(f=>(f.t+=dt)<f.d);
-    beamPulse+=dt;
-  }
-  function draw(){
-    ctx.clearRect(0,0,W,H);
-    // drain
-    const dy=drainY();ctx.save();ctx.setLineDash([6,6]);ctx.strokeStyle=auto?"rgba(255,107,107,.18)":"rgba(255,107,107,.6)";ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(0,dy+14);ctx.lineTo(W,dy+14);ctx.stroke();ctx.restore();
-    ctx.font="600 11px JetBrains Mono,monospace";ctx.fillStyle=auto?"rgba(255,107,107,.3)":C.warn;ctx.textAlign="left";ctx.fillText("ВТРАЧЕНО ▼",10,H-5);
-    // beam
-    if(auto){
-      const y=beamY(),g=ctx.createLinearGradient(0,y-26,0,y+26);g.addColorStop(0,"rgba(39,211,245,0)");g.addColorStop(.5,"rgba(46,230,166,.28)");g.addColorStop(1,"rgba(39,211,245,0)");
-      ctx.fillStyle=g;ctx.fillRect(0,y-26,W,52);
-      ctx.strokeStyle=C.green;ctx.lineWidth=2;ctx.shadowColor=C.green;ctx.shadowBlur=14;ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();ctx.shadowBlur=0;
-      ctx.fillStyle=C.green;ctx.textAlign="right";ctx.font="700 11px JetBrains Mono,monospace";ctx.fillText("CRM + ТЕЛЕФОНІЯ + AI",W-10,y-8);
-    }
-    // leads
-    for(const l of leads){
-      ctx.save();
-      let a=1,col=C.cyan,txt=l.txt;
-      if(l.st==="caught"){a=1-l.life/.7;col=C.green}
-      if(l.st==="lost"){a=1-l.life/.7;col=C.warn}
-      ctx.globalAlpha=Math.max(0,a);
-      rr(l.x-PW/2,l.y-PH/2,PW,PH,17);
-      ctx.fillStyle=l.st==="live"?C.panel:l.st==="caught"?"rgba(46,230,166,.25)":"rgba(255,107,107,.25)";ctx.fill();
-      ctx.strokeStyle=col;ctx.lineWidth=1.5;ctx.shadowColor=col;ctx.shadowBlur=l.st==="live"?8:16;ctx.stroke();ctx.shadowBlur=0;
-      ctx.fillStyle=col;ctx.beginPath();ctx.arc(l.x-PW/2+16,l.y,4.5,0,7);ctx.fill();
-      ctx.fillStyle=C.fg;ctx.font="600 12px JetBrains Mono,monospace";ctx.textAlign="left";ctx.fillText(txt,l.x-PW/2+28,l.y+4);
-      if(l.st==="caught"){ctx.fillStyle=C.green;ctx.font="700 12px JetBrains Mono,monospace";ctx.textAlign="center";ctx.fillText(l.auto?"→ CRM · авто":"→ CRM",l.x,l.y-26)}
-      if(l.st==="lost"){ctx.fillStyle=C.warn;ctx.font="700 12px JetBrains Mono,monospace";ctx.textAlign="center";ctx.fillText("втрачено",l.x,l.y-26)}
-      ctx.restore();
-    }
-    // ripples
-    for(const f of fx){const k=f.t/f.d;ctx.strokeStyle=`rgba(39,211,245,${1-k})`;ctx.lineWidth=2;ctx.beginPath();ctx.arc(f.x,f.y,8+k*26,0,7);ctx.stroke()}
-  }
-  function frame(ts){
-    if(!visible||!armed){raf=0;return}
-    if(!last)last=ts;const dt=Math.min(.05,(ts-last)/1000);last=ts;
-    step(dt);draw();raf=requestAnimationFrame(frame);
-  }
-  function run(){if(!raf&&visible&&armed){last=0;raf=requestAnimationFrame(frame)}}
-  new IntersectionObserver(e=>{visible=e[0].isIntersecting;run()}).observe(cv);
-  cv.addEventListener("pointerdown",e=>{
-    const r=cv.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;
-    let hit=null;
-    for(const l of leads){if(l.st==="live"&&Math.abs(x-l.x)<PW/2+8&&Math.abs(y-l.y)<PH/2+12){if(!hit||l.y>hit.y)hit=l}}
-    if(hit)catchLead(hit,false);else fx.push({x,y,t:0,d:.4});
-    if(!armed)return;
-  });
-  $("#auto").addEventListener("click",e=>{
-    auto=!auto;e.currentTarget.setAttribute("aria-pressed",auto);e.currentTarget.classList.remove("hint");
-    $("#hint").textContent=auto?"Автопілот ловить кожен лід. Видно різницю?":"Клікай по лідах, поки не впали";
-  });
-  $("#reset").addEventListener("click",()=>{leads=[];fx=[];caught=0;lost=0;elapsed=0;spawnT=.3;stats();$("#sP").textContent="—"});
-  if(reduce){$("#start").classList.add("on");draw();
-    $("#startBtn").onclick=()=>{armed=true;$("#start").classList.remove("on");run()}}
-  stats();
 })();
 
 /* ============ CALCULATOR ============ */
