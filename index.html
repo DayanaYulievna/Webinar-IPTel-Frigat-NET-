@@ -13,28 +13,28 @@
 /* Концепція: «пульт керування лідами» — темна сцена, сітка, пайплайн-лінія вздовж сторінки.
    Палітра: синій → блакитний → зелений. Warn (червоний) — тільки для «втрачено». */
 :root{
-  --bg:#04101c; --bg2:#071a2c; --panel:#0a2236; --panel2:#0e2d47; --line:#17344f;
-  --fg:#e9f5ff; --mut:#8fb0c9;
-  --blue:#2f7bff; --cyan:#27d3f5; --green:#2ee6a6; --warn:#ff6b6b;
-  --grad:linear-gradient(90deg,#2f7bff,#27d3f5 55%,#2ee6a6);
+  --bg:#071417; --bg2:#0b1e22; --panel:#10292e; --panel2:#15343a; --line:#1f4249;
+  --fg:#e8f5f3; --mut:#8fb3b0;
+  --blue:#2f8fb5; --cyan:#5cc0c9; --green:#86d6a6; --warn:#ff6b6b;
+  --grad:linear-gradient(90deg,#2f8fb5,#3fb0b8 55%,#8ad4a8);
   --f-d:'Onest',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif; --f-m:'Onest',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif; --f-b:'Onest',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
-  --bg-rgb:4,16,28; --bg2-rgb:7,26,44; --pn-rgb:10,34,54; --cy-rgb:39,211,245; --gr-rgb:46,230,166; --bl-rgb:47,123,255; --on:#031018;
+  --bg-rgb:7,20,23; --bg2-rgb:11,30,34; --pn-rgb:16,41,46; --cy-rgb:92,192,201; --gr-rgb:134,214,166; --bl-rgb:47,143,181; --on:#06181b;
   --glass:rgba(var(--bg-rgb),.5); --glass2:rgba(var(--bg-rgb),.6); --navbg:rgba(var(--bg-rgb),.72); --tickbg:rgba(var(--bg2-rgb),.7); --chipbg:rgba(var(--pn-rgb),.6);
-  --mA:var(--bg2); --mB:var(--panel2); --ph:#5f7f99; --tagc:#8ab4ff;
-  --g1:rgba(var(--bl-rgb),.28); --g2:rgba(var(--cy-rgb),.12); --g3:rgba(var(--gr-rgb),.12); --gridc:rgba(var(--cy-rgb),.045);
-  --shd:rgba(var(--bl-rgb),.55); --btn:linear-gradient(90deg,#27d3f5,#2ee6a6);
+  --mA:var(--bg2); --mB:var(--panel2); --ph:#5f8289; --tagc:#7fd0d8;
+  --g1:rgba(47,143,181,.28); --g2:rgba(92,192,201,.12); --g3:rgba(134,214,166,.12); --gridc:rgba(92,192,201,.045);
+  --shd:rgba(47,143,181,.5); --btn:linear-gradient(90deg,#5cc0c9,#8ad4a8);
   color-scheme:dark;
 }
 /* Світла тема: свіжий блакитно-білий фон, глибші синій / бірюзовий / зелений для читабельності */
 :root[data-theme="light"]{
-  --bg:#f2f8ff; --bg2:#e7f1fc; --panel:#ffffff; --panel2:#ffffff; --line:#d3e4f5;
-  --fg:#0b2540; --mut:#496682;
-  --blue:#1d5eff; --cyan:#0a86ad; --green:#0a9d6e; --warn:#e0314b;
-  --grad:linear-gradient(90deg,#1d5eff,#0a9bd0 55%,#0aa877);
-  --glass:rgba(255,255,255,.7); --glass2:rgba(255,255,255,.85); --navbg:rgba(242,248,255,.8); --tickbg:rgba(255,255,255,.72); --chipbg:rgba(255,255,255,.85);
-  --mA:#ffffff; --mB:#e9f3ff; --ph:#7d97ae; --tagc:#1d5eff;
-  --g1:rgba(var(--bl-rgb),.17); --g2:rgba(var(--cy-rgb),.15); --g3:rgba(var(--gr-rgb),.15); --gridc:rgba(var(--bl-rgb),.07);
-  --shd:rgba(var(--bl-rgb),.3); --bl-rgb:29,94,255; --cy-rgb:10,134,173; --gr-rgb:10,157,110;
+  --bg:#f1f8f8; --bg2:#e3f0f0; --panel:#fff; --panel2:#fff; --line:#cfe5e5;
+  --fg:#0c2a2e; --mut:#4a6b6e;
+  --blue:#1f7a99; --cyan:#14808c; --green:#198a5e; --warn:#e0314b;
+  --grad:linear-gradient(90deg,#1f7a99,#2a9aa0 55%,#3aa573);
+  --glass:rgba(255,255,255,.7); --glass2:rgba(255,255,255,.85); --navbg:rgba(241,248,248,.8); --tickbg:rgba(255,255,255,.72); --chipbg:rgba(255,255,255,.85);
+  --mA:#ffffff; --mB:#e9f3ff; --ph:#7d97ae; --tagc:#1f7a99;
+  --g1:rgba(31,122,153,.16); --g2:rgba(20,128,140,.13); --g3:rgba(25,138,94,.13); --gridc:rgba(31,122,153,.07);
+  --shd:rgba(31,122,153,.3); --bl-rgb:31,122,153; --cy-rgb:20,128,140; --gr-rgb:25,138,94;
   color-scheme:light;
 }
 *{box-sizing:border-box;margin:0}
@@ -334,27 +334,6 @@ h1,h2,h3{font-weight:800;letter-spacing:-.025em}
 @media(max-width:960px){.who2-g{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.who2-g{grid-template-columns:1fr}.who2{margin-top:44px}}
 
-/* ===== ПАЛІТРИ (тимчасові варіанти для вибору) ===== */
-/* palette: indigo */
-:root[data-palette="indigo"]:not([data-theme="light"]){--bg:#0a0d1f;--bg2:#101531;--panel:#161c3d;--panel2:#1d2550;--line:#2a3466;--fg:#eef0ff;--mut:#9aa3d1;--blue:#5b7cff;--cyan:#9db0ff;--green:#7fe0b5;--grad:linear-gradient(90deg,#5b7cff,#8b8bff 55%,#c2a5ff);--btn:linear-gradient(90deg,#8ea2ff,#b9a8ff);--on:#0a0d1f;--bg-rgb:10,13,31;--bg2-rgb:16,21,49;--pn-rgb:22,28,61;--cy-rgb:157,176,255;--gr-rgb:127,224,181;--bl-rgb:91,124,255;--g1:rgba(91,124,255,.30);--g2:rgba(157,176,255,.14);--g3:rgba(194,165,255,.14);--gridc:rgba(157,176,255,.05);--shd:rgba(91,124,255,.55);--tagc:#aab8ff;--ph:#6b749f;}
-:root[data-theme="light"][data-palette="indigo"]{--bg:#f4f5ff;--bg2:#e9ecfb;--panel:#fff;--panel2:#fff;--line:#d9dcf2;--fg:#14183a;--mut:#565c8a;--blue:#3f5bf0;--cyan:#4a5fe0;--green:#1f9d6e;--grad:linear-gradient(90deg,#3f5bf0,#6a62e8 55%,#9a63d8);--btn:linear-gradient(90deg,#8ea2ff,#b9a8ff);--on:#0a0d1f;--cy-rgb:74,95,224;--gr-rgb:31,157,110;--bl-rgb:63,91,240;--navbg:rgba(244,245,255,.8);--mB:#eceeff;--g1:rgba(63,91,240,.17);--g2:rgba(154,99,216,.12);--g3:rgba(74,95,224,.12);--gridc:rgba(63,91,240,.07);--shd:rgba(63,91,240,.3);--tagc:#3f5bf0;}
-/* palette: teal */
-:root[data-palette="teal"]:not([data-theme="light"]){--bg:#071417;--bg2:#0b1e22;--panel:#10292e;--panel2:#15343a;--line:#1f4249;--fg:#e8f5f3;--mut:#8fb3b0;--blue:#2f8fb5;--cyan:#5cc0c9;--green:#86d6a6;--grad:linear-gradient(90deg,#2f8fb5,#3fb0b8 55%,#8ad4a8);--btn:linear-gradient(90deg,#5cc0c9,#8ad4a8);--on:#06181b;--bg-rgb:7,20,23;--bg2-rgb:11,30,34;--pn-rgb:16,41,46;--cy-rgb:92,192,201;--gr-rgb:134,214,166;--bl-rgb:47,143,181;--g1:rgba(47,143,181,.28);--g2:rgba(92,192,201,.12);--g3:rgba(134,214,166,.12);--gridc:rgba(92,192,201,.045);--shd:rgba(47,143,181,.5);--tagc:#7fd0d8;--ph:#5f8289;}
-:root[data-theme="light"][data-palette="teal"]{--bg:#f1f8f8;--bg2:#e3f0f0;--panel:#fff;--panel2:#fff;--line:#cfe5e5;--fg:#0c2a2e;--mut:#4a6b6e;--blue:#1f7a99;--cyan:#14808c;--green:#198a5e;--grad:linear-gradient(90deg,#1f7a99,#2a9aa0 55%,#3aa573);--btn:linear-gradient(90deg,#5cc0c9,#8ad4a8);--on:#06181b;--cy-rgb:20,128,140;--gr-rgb:25,138,94;--bl-rgb:31,122,153;--navbg:rgba(241,248,248,.8);--mB:#e6f3f3;--g1:rgba(31,122,153,.16);--g2:rgba(20,128,140,.13);--g3:rgba(25,138,94,.13);--gridc:rgba(31,122,153,.07);--shd:rgba(31,122,153,.3);--tagc:#1f7a99;}
-/* palette: amber */
-:root[data-palette="amber"]:not([data-theme="light"]){--bg:#0a1428;--bg2:#0e1b36;--panel:#132345;--panel2:#1a2d56;--line:#243a6b;--fg:#eef3ff;--mut:#93a5cf;--blue:#4f86ff;--cyan:#f2b84b;--green:#56cf9f;--grad:linear-gradient(90deg,#4f86ff,#8fb0ff 50%,#f4be5a);--btn:linear-gradient(90deg,#f5b94a,#f7d27e);--on:#0a1428;--bg-rgb:10,20,40;--bg2-rgb:14,27,54;--pn-rgb:19,35,69;--cy-rgb:242,184,75;--gr-rgb:86,207,159;--bl-rgb:79,134,255;--g1:rgba(79,134,255,.30);--g2:rgba(242,184,75,.10);--g3:rgba(79,134,255,.12);--gridc:rgba(143,176,255,.05);--shd:rgba(79,134,255,.5);--tagc:#9bb8ff;--ph:#657a9f;}
-:root[data-theme="light"][data-palette="amber"]{--bg:#f5f7ff;--bg2:#e9eefb;--panel:#fff;--panel2:#fff;--line:#d6def3;--fg:#0d1b3d;--mut:#4c5d8a;--blue:#2d62e6;--cyan:#a86a08;--green:#14935f;--grad:linear-gradient(90deg,#2d62e6,#5b86f0 50%,#d99413);--btn:linear-gradient(90deg,#f5b94a,#f7d27e);--on:#0a1428;--cy-rgb:168,106,8;--gr-rgb:20,147,95;--bl-rgb:45,98,230;--navbg:rgba(245,247,255,.8);--mB:#eaf0ff;--g1:rgba(45,98,230,.16);--g2:rgba(217,148,19,.12);--g3:rgba(45,98,230,.1);--gridc:rgba(45,98,230,.07);--shd:rgba(45,98,230,.3);--tagc:#2d62e6;}
-/* palette: graphite */
-:root[data-palette="graphite"]:not([data-theme="light"]){--bg:#0e1114;--bg2:#14181c;--panel:#1a2025;--panel2:#212830;--line:#2c343c;--fg:#f0f3f5;--mut:#94a0ab;--blue:#7ea8e8;--cyan:#8fd6bd;--green:#8fd6bd;--grad:linear-gradient(90deg,#7ea8e8,#8fd6bd);--btn:linear-gradient(90deg,#8fd6bd,#b4e6d2);--on:#0e1114;--bg-rgb:14,17,20;--bg2-rgb:20,24,28;--pn-rgb:26,32,37;--cy-rgb:143,214,189;--gr-rgb:143,214,189;--bl-rgb:126,168,232;--g1:rgba(126,168,232,.18);--g2:rgba(143,214,189,.09);--g3:rgba(143,214,189,.07);--gridc:rgba(255,255,255,.035);--shd:rgba(0,0,0,.6);--tagc:#a9c4ee;--ph:#6c7882;}
-:root[data-theme="light"][data-palette="graphite"]{--bg:#f4f5f6;--bg2:#e9ebed;--panel:#fff;--panel2:#fff;--line:#d9dde0;--fg:#14181b;--mut:#59636c;--blue:#3a6fc4;--cyan:#2c8a73;--green:#2c8a73;--grad:linear-gradient(90deg,#3a6fc4,#2c8a73);--btn:linear-gradient(90deg,#8fd6bd,#b4e6d2);--on:#0e1114;--cy-rgb:44,138,115;--gr-rgb:44,138,115;--bl-rgb:58,111,196;--navbg:rgba(244,245,246,.8);--mB:#eef0f1;--g1:rgba(58,111,196,.1);--g2:rgba(44,138,115,.08);--g3:rgba(44,138,115,.06);--gridc:rgba(0,0,0,.04);--shd:rgba(20,24,27,.18);--tagc:#3a6fc4;}
-
-/* тимчасовий перемикач палітр */
-.pal{position:fixed;left:14px;bottom:14px;z-index:80;display:flex;gap:6px;align-items:center;flex-wrap:wrap;max-width:calc(100vw - 28px);padding:8px 10px;border-radius:14px;background:var(--navbg);border:1px solid var(--line);backdrop-filter:blur(12px);box-shadow:0 10px 30px -10px rgba(0,0,0,.5)}
-.pal b{font-size:12.5px;color:var(--mut);margin-right:4px}
-.pal button{font:700 13px var(--f-b);border:1.5px solid var(--line);background:var(--glass);color:var(--fg);padding:7px 11px;border-radius:9px;cursor:pointer}
-.pal button.on{background:var(--btn);color:var(--on);border-color:transparent}
-@media(max-width:700px){.pal{bottom:78px}}
-
 /* theme toggle + light-theme finishing */
 .nr{display:flex;align-items:center;gap:10px}
 .tt{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--glass);color:var(--fg);display:grid;place-items:center;cursor:pointer;transition:.25s}
@@ -593,9 +572,6 @@ h1,h2,h3{font-weight:800;letter-spacing:-.025em}
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <footer><div class="wrap">© IPTel × Frigat NET · Вебінар «CRM + телефонія + AI»</div></footer>
-<div class="pal" id="pal" role="group" aria-label="Палітра (тимчасово)"><b>Палітра:</b>
-  <button data-p="" class="on">Зараз</button><button data-p="indigo">Індиго</button><button data-p="teal">Хвиля</button><button data-p="amber">Бурштин</button><button data-p="graphite">Графіт</button>
-</div>
 <div class="mcta" id="mcta"><a class="btn" href="#register" data-book>Зареєструватися →</a></div>
 
 <script>
@@ -606,13 +582,6 @@ const CONFIG = {
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const fmt=n=>Math.round(n).toLocaleString("uk-UA").replace(/ /g," ");
 const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-/* temporary palette switcher */
-$$("#pal button").forEach(b=>b.addEventListener("click",()=>{
-  const r=document.documentElement;
-  if(b.dataset.p)r.setAttribute("data-palette",b.dataset.p);else r.removeAttribute("data-palette");
-  $$("#pal button").forEach(x=>x.classList.toggle("on",x===b));
-}));
 
 /* theme toggle */
 $("#theme").addEventListener("click",()=>{
@@ -763,8 +732,8 @@ $("#form").addEventListener("submit",async e=>{
   $("#formBody").innerHTML=`<div class="th"><div class="ok">✓</div><h3>Ви в списку!</h3><p>Надіслали деталі на ${esc(data.email)}. До зустрічі ${$("#dateLabel").textContent}!</p></div>`;
 });
 
-const dlg=$("#book"),bookBody=$("#bookBody"),bookHTML=bookBody.innerHTML;
 $$(".dl").forEach(el=>el.textContent=$("#dateLabel").textContent);
+const dlg=$("#book"),bookBody=$("#bookBody"),bookHTML=bookBody.innerHTML;
 let toastT,closeT;
 function toast(msg){const t=$("#toast");t.textContent=msg;t.classList.add("show");clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove("show"),4500)}
 function closeBook(){clearTimeout(closeT);if(dlg.open)dlg.close()}
