@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>(function(){var r=document.documentElement,s=null;try{s=localStorage.getItem("theme")}catch(e){}if(s!=="light"&&s!=="dark")s=r.getAttribute("data-theme")||(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark");r.setAttribute("data-theme",s)})();</script>
 <title>Вебінар CRM + телефонія + AI</title>
-<meta name="description" content="Безкоштовний вебінар від IPTel та Frigat: як зробити так, щоб дзвінки й заявки не губилися між телефонією, CRM і менеджерами.">
+<meta name="description" content="Безкоштовний вебінар від IPTel та Frigat: голосовий робот, телефонія та CRM беруть на себе нагадування, вхідні дзвінки й передачу даних. Покажемо на живих прикладах.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -305,6 +305,22 @@ h1,h2,h3{font-weight:800;letter-spacing:-.025em}
 .evl li{display:flex;gap:10px}.evl li::before{content:"→";color:var(--green);font-weight:700}
 :root[data-theme="light"] .evc{box-shadow:0 24px 60px -36px rgba(29,94,255,.5)}
 
+/* audience + benefit calculator */
+.who{margin-top:24px;padding-top:20px;border-top:1px solid var(--line);max-width:620px}
+.who .k{font-size:13.5px;font-weight:700;letter-spacing:.02em;color:var(--cyan);margin-bottom:12px}
+.who-g{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.who-g>div{border:1px solid var(--line);border-radius:14px;padding:16px;background:var(--glass)}
+.who-g b{display:block;font-size:16px;margin-bottom:4px}
+.about .who-g p{margin:0;font-size:14.5px;color:var(--mut);max-width:none}
+.tsub{display:block;margin-top:6px;font-size:12.5px;font-weight:600;letter-spacing:0;color:var(--mut);line-height:1.3}
+.row .t{padding-right:8px}
+.cm{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.cm button{font:700 15px var(--f-b);color:var(--fg);background:var(--glass);border:1.5px solid var(--line);padding:12px 18px;border-radius:12px;cursor:pointer;transition:.2s}
+.cm button:hover{border-color:var(--cyan)}
+.cm button.on{background:var(--btn);color:#031018;border-color:transparent}
+.sum{font-size:16px;font-weight:600;line-height:1.5;margin-top:4px;color:var(--fg)}
+@media(max-width:560px){.who-g{grid-template-columns:1fr}}
+
 /* theme toggle + light-theme finishing */
 .nr{display:flex;align-items:center;gap:10px}
 .tt{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--glass);color:var(--fg);display:grid;place-items:center;cursor:pointer;transition:.25s}
@@ -330,7 +346,7 @@ h1,h2,h3{font-weight:800;letter-spacing:-.025em}
 <header class="nav" id="nav">
   <div class="wrap">
     <a href="#top" class="logo"><i></i>IPTel × Frigat</a>
-    <nav class="nl"><a href="#about">Про вебінар</a><a href="#speakers">Спікери</a><a href="#loss">Втрати</a><a href="#journey">Рішення</a><a href="#faq">FAQ</a></nav>
+    <nav class="nl"><a href="#about">Про вебінар</a><a href="#program">Програма</a><a href="#loss">Калькулятор</a><a href="#speakers">Спікери</a><a href="#faq">FAQ</a></nav>
     <div class="nr">
       <button class="tt" id="theme" type="button" aria-label="Змінити тему" title="Світла / темна тема">
         <svg class="sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
@@ -347,16 +363,16 @@ h1,h2,h3{font-weight:800;letter-spacing:-.025em}
     <div>
       <div class="lab">Безкоштовний вебінар</div>
       <h1>Як побудувати відділ продажів, <span class="g">який не губить ліди</span><span class="h1sub">CRM + телефонія + AI</span></h1>
-      <p class="lead">Розкажемо, як зробити так, щоб жоден дзвінок і жодна заявка не зникали по дорозі до менеджера, і що з цим можуть зробити CRM, телефонія та розшифровка розмов.</p>
+      <p class="lead">Покажемо на живих прикладах, як голосовий робот, телефонія та CRM беруть на себе рутину: нагадують клієнтам про документи, відповідають на дзвінки, коли всі зайняті, і передають усе менеджеру вже готовим.</p>
       <div class="cta">
         <a class="btn" href="#register" data-book>Забронювати місце →</a>
-        <a class="btn ghost" href="#loss">Порахувати втрати</a>
+        <a class="btn ghost" href="#loss">Порахувати вигоду</a>
       </div>
     </div>
     <aside class="evc" aria-label="Дата і час вебінару">
       <div class="evh">Коли</div>
       <div class="evd"><b id="dateLabel">3 грудня</b><span>16:00 за Києвом</span></div>
-      <ul class="evl"><li>Година розмови й відповіді на запитання</li><li>Онлайн, посилання прийде на пошту</li><li>Безкоштовно</li></ul>
+      <ul class="evl"><li>Розмова з прикладами та відповідями на запитання</li><li>Онлайн, посилання прийде на пошту</li><li>Безкоштовно</li></ul>
       <div class="evh" style="margin-bottom:10px">До початку</div>
       <div class="cd" aria-label="Відлік до вебінару">
         <div>
@@ -374,24 +390,23 @@ h1,h2,h3{font-weight:800;letter-spacing:-.025em}
     <div class="about">
       <div>
         <div class="lab rv">Про вебінар</div>
-        <h2 class="rv">Знайома ситуація? <span class="g">Про неї й поговоримо</span></h2>
-        <p class="rv">Клієнт телефонує, а менеджер на іншій лінії. Заявка прийшла з сайту ввечері, а вранці про неї ніхто не пам'ятає. «Передзвоню завтра» так і залишилось у голові.</p>
-        <p class="rv">Реклама вже оплачена, клієнт уже написав або набрав, а грошей це не принесло. Такі історії знайомі багатьом відділам продажів, і найгірше, що їх зазвичай навіть не видно.</p>
-        <p class="rv">На вебінарі розберемо, як зробити так, щоб це було і видно, і не губилось: що має робити телефонія, що CRM, а що можна доручити розшифровці розмов. Без «автоматизуємо все», на прикладах.</p>
-        <div class="for rv">
-          <div class="k">Буде корисно, якщо</div>
-          <ul>
-            <li>ви власник або керуєте відділом продажів</li>
-            <li>CRM і телефонія вже є, але ви не певні, що бачите все, що відбувається</li>
-            <li>ви тільки вибираєте, з чого почати</li>
-          </ul>
+        <h2 class="rv">Побачите, як <span class="g">робот бере на себе рутину</span></h2>
+        <p class="rv">Нагадати клієнтам про документи. Відповісти на дзвінок, коли всі зайняті. Записати, про що домовились, і поставити задачу менеджеру. Це рутина, яка з'їдає години, і її легко пропустити.</p>
+        <p class="rv">На вебінарі ми, IPTel та Frigat, покажемо два робочі приклади: як цю рутину бере на себе голосовий робот, підключений до телефонії та CRM. Не на слайдах, а в роботі: ви почуєте, як він розмовляє, і побачите, що після цього з'явилось у CRM.</p>
+        <p class="rv">Багато хто вже пробував роботів, і результат не виправдав очікувань. Тому покажемо чесно: що робот уміє добре, а де потрібна людина.</p>
+        <div class="who rv">
+          <div class="k">Для кого</div>
+          <div class="who-g">
+            <div><b>Бухгалтерам</b><p>Документи та нагадування клієнтам</p></div>
+            <div><b>Власникам і керівникам</b><p>Вхідні звернення, консультації та передача даних у CRM</p></div>
+          </div>
         </div>
       </div>
       <div class="duo rv" role="img" aria-label="Frigat і IPTel роблять вебінар разом: CRM і телефонія">
         <div class="co"><span>CRM</span><b>Frigat</b><p>CRM та автоматизація продажів</p></div>
         <div class="xx">+</div>
-        <div class="co"><span>ТЕЛЕФОНІЯ</span><b>IPTel</b><p>Телефонія для бізнесу</p></div>
-        <div class="res"><i></i>Ліди зазвичай зникають на стику телефонії та CRM. Тому цей вебінар ми, Frigat та IPTel, робимо разом.</div>
+        <div class="co"><span>ТЕЛЕФОНІЯ</span><b>IPTel</b><p>Телефонія, голосові роботи та аналітика розмов</p></div>
+        <div class="res"><i></i>Frigat відповідає за CRM, IPTel за телефонію. Разом покажуть, як це працює в зв'язці: від дзвінка до оновленої угоди.</div>
       </div>
     </div>
   </div>
@@ -400,24 +415,24 @@ h1,h2,h3{font-weight:800;letter-spacing:-.025em}
 <section id="program" style="padding-top:20px">
   <div class="wrap">
     <div class="lab rv">Програма</div>
-    <h2 class="rv">Про що <span class="g">поговоримо</span></h2>
+    <h2 class="rv">Що покажемо <span class="g">наживо</span></h2>
     <div class="rows">
-      <article class="row rv"><div class="t">ЗВ'ЯЗОК</div><div><h3>Дзвінки: що з ними відбувається насправді</h3><p>Скільки дзвінків пропущено і хто мав передзвонити.</p></div><ul><li>Як кожен дзвінок стає карткою клієнта</li><li>Кому передати розмову, щоб вона не блукала між менеджерами</li><li>Що робити з пропущеними</li></ul></article>
-      <article class="row rv"><div class="t">ДАНІ</div><div><h3>CRM, яка не залежить від пам'яті менеджера</h3><p>Де зараз кожен клієнт і що з ним робити далі.</p></div><ul><li>Етапи й задачі, які справді виконують</li><li>Як керівнику бачити картину без допитів менеджерів</li><li>Які цифри варто дивитись, а які ні</li></ul></article>
-      <article class="row rv"><div class="t">РОЗМОВИ</div><div><h3>Що сказали клієнту і що він відповів</h3><p>Те, що зазвичай залишається лише в голові менеджера.</p></div><ul><li>Запис і текст розмови в картці клієнта</li><li>Як перевіряти якість дзвінків, не слухаючи кожен</li><li>Підсумок і наступний крок одразу після розмови</li></ul></article>
+      <article class="row rv"><div class="t">ЧАСТИНА 1<br><span class="tsub">для бухгалтерів</span></div><div><h3>Документи й нагадування без ручних дзвінків</h3><p>Як CRM і телефонія самі збирають документи в клієнтів.</p></div><ul><li>CRM передає контакти в телефонію за подією, наприклад, коли угода дійшла до потрібного етапу</li><li>Робот телефонує клієнту й нагадує про акти виконаних робіт чи акти звірки</li><li>Відповідь клієнта записується, а угода в CRM оновлюється сама</li></ul></article>
+      <article class="row rv"><div class="t">ЧАСТИНА 2<br><span class="tsub">для власників і керівників</span></div><div><h3>Вхідні дзвінки, коли ніхто не може взяти слухавку</h3><p>Що відбувається з клієнтом увечері, у вихідні й під час обіду.</p></div><ul><li>Робот відповідає у неробочий час або коли всі зайняті</li><li>Дає базові консультації за вашою базою знань</li><li>Передає все в CRM: картка клієнта, підсумок розмови, задача менеджеру. Вранці менеджеру лишається дотиснути готового ліда</li></ul></article>
+      <article class="row rv"><div class="t">КОРОТКО<br><span class="tsub">якщо вистачить часу</span></div><div><h3>Розмови під контролем</h3><p>Що було в розмові, без прослуховування кожного запису.</p></div><ul><li>Підсумок кожного дзвінка в CRM</li><li>Звіт: які були заперечення і що працює</li><li>Черги й розподіл дзвінків між менеджерами, які на зміні</li></ul></article>
     </div>
   </div>
 </section>
 
 <section id="takeaway" style="padding-top:20px">
   <div class="wrap">
-    <div class="lab rv">Після вебінару</div>
-    <h2 class="rv">Що ви заберете <span class="g">з собою</span></h2>
+    <div class="lab rv">Ваша користь</div>
+    <h2 class="rv">Що ви <span class="g">отримаєте</span></h2>
     <div class="take">
-      <div class="tk rv"><span>ЧЕК-ЛІСТ</span><h3>«10 місць, де губляться ліди»</h3><p>Пройдіться ним по своєму відділу й подивіться, що з цього вам знайоме.</p></div>
-      <div class="tk rv"><span>ЗАПИС</span><h3>Весь ефір</h3><p>Можна переглянути пізніше або показати команді.</p></div>
-      <div class="tk rv"><span>ПРЕЗЕНТАЦІЯ</span><h3>Схеми й приклади</h3><p>Усе, що покажемо на екрані.</p></div>
-      <div class="tk rv"><span>ВІДПОВІДІ</span><h3>На ваші запитання</h3><p>Напишіть своє при реєстрації або в чаті, найцікавіші розберемо наживо.</p></div>
+      <div class="tk rv"><span>РОЗУМІННЯ</span><h3>Що можна доручити роботу вже зараз</h3><p>Побачите на прикладах, які задачі робот виконує добре, а де потрібна людина.</p></div>
+      <div class="tk rv"><span>ПРИКЛАДИ</span><h3>Два робочі сценарії</h3><p>Документи й нагадування, вхідні дзвінки. Можна взяти за основу у своїй компанії.</p></div>
+      <div class="tk rv"><span>МАТЕРІАЛИ</span><h3>Чек-ліст, запис і презентація</h3><p>«10 місць, де губляться ліди», запис ефіру та схеми з екрана.</p></div>
+      <div class="tk rv"><span>ВІДПОВІДІ</span><h3>На ваші запитання</h3><p>Напишіть своє при реєстрації або в чаті, і модератор передасть його спікерам.</p></div>
     </div>
   </div>
 </section>
@@ -427,32 +442,29 @@ h1,h2,h3{font-weight:800;letter-spacing:-.025em}
     <div class="lab rv">Спікери</div>
     <h2 class="rv">Хто <span class="g">проведе</span> вебінар</h2>
     <div class="spk">
-      <!-- TODO: замінити на реальних спікерів та фото -->
-      <div class="sp rv"><div class="ava">І</div><div><h3>Ім'я Прізвище</h3><small>IPTel · телефонія</small><p>Розбирається в телефонії та контакт-центрах. Розкаже, що відбувається з дзвінком, поки він шукає менеджера.</p></div></div>
-      <div class="sp rv"><div class="ava">F</div><div><h3>Ім'я Прізвище</h3><small>Frigat · CRM</small><p>Налаштовує CRM у відділах продажів. Знає, де в воронках зазвичай губляться клієнти.</p></div></div>
+      <!-- TODO: підтвердити імена та ролі, додати фото й коротку біографію -->
+      <div class="sp rv"><div class="ava">І</div><div><h3>Іван Виноградов</h3><small>IPTel · телефонія</small><p>Покаже, як телефонія й голосовий робот працюють у зв'язці з CRM: від дзвінка до підсумку розмови.</p></div></div>
+      <div class="sp rv"><div class="ava">Д</div><div><h3>Дмитро Маслаков</h3><small>Frigat · CRM</small><p>Покаже, як налаштувати CRM, щоб дані між системами передавались самі, а угоди оновлювались без ручної роботи.</p></div></div>
     </div>
   </div>
 </section>
 
 <section id="loss">
   <div class="wrap">
-    <div class="lab rv">Втрати</div>
-    <h2 class="rv">Скільки грошей <span class="g">витікає</span> з вашої воронки?</h2>
-    <p class="lead rv">Конверсію зазвичай рахують від заявок, які дійшли до CRM. А ті, що не дійшли, ніде не видно. Хоча за кожну ви вже заплатили: рекламою, сайтом, часом менеджера. Підставте свої цифри й подивіться, скільки це за рік.</p>
+    <div class="lab rv">Калькулятор</div>
+    <h2 class="rv">Скільки часу й клієнтів ви <span class="g">можете повернути</span></h2>
+    <p class="lead rv">Оберіть, що вам ближче, і подивіться на прикладі, що змінюється, коли рутину бере на себе робот. Цифри можна не чіпати: там уже стоїть типовий приклад.</p>
+    <div class="cm rv" role="tablist" id="cmode">
+      <button class="on" data-m="docs" role="tab">Документи й нагадування</button>
+      <button data-m="calls" role="tab">Вхідні дзвінки</button>
+    </div>
     <div class="calc">
-      <div class="pn rv">
-        <div class="fld"><label for="leads">Звернень на місяць <output id="oLeads"></output></label><input type="range" id="leads" min="20" max="1000" step="10" value="200"></div>
-        <div class="fld"><label for="check">Середній чек <output id="oCheck"></output></label><input type="range" id="check" min="1000" max="200000" step="1000" value="25000"></div>
-        <div class="fld"><label for="conv">Скільки звернень закінчуються продажем <output id="oConv"></output></label><input type="range" id="conv" min="2" max="50" value="15"></div>
-        <div class="fld"><label for="lossPct">Скільки звернень губиться по дорозі <output id="oLoss"></output></label><input type="range" id="lossPct" min="5" max="60" value="25"></div>
-      </div>
+      <div class="pn rv" id="cin"></div>
       <div class="pn out rv">
-        <div class="k">Скільки це за рік</div><div class="big w" id="rYear">0 ₴</div>
-        <div class="k">Якщо повернути хоча б половину</div><div class="big o" id="rBack">0 ₴</div>
-        <div class="k" style="margin-bottom:10px">100 звернень: що з ними відбувається</div>
-        <div class="dots" id="dots" aria-hidden="true"></div>
-        <div class="leg"><span style="--c:var(--green)">працюємо з ними</span><span style="--c:var(--warn)">губимо</span><span style="--c:var(--cyan)">повертаємо</span></div>
-        <p class="note">Це приблизний розрахунок, щоб було з чим порівняти. Реальні цифри у вас можуть бути іншими, а як їх дізнатися, покажемо на вебінарі.</p>
+        <div class="k" id="k1"></div><div class="big o" id="v1">0</div>
+        <div class="k" id="k2"></div><div class="big o" id="v2">0</div>
+        <p class="sum" id="sum"></p>
+        <p class="note" id="note"></p>
       </div>
     </div>
   </div>
@@ -460,7 +472,7 @@ h1,h2,h3{font-weight:800;letter-spacing:-.025em}
 
 <section id="journey" style="padding-top:20px">
   <div class="wrap">
-    <div class="lab rv">Як це виправити</div>
+    <div class="lab rv">Як це працює</div>
     <h2 class="rv">Той самий клієнт. <span class="g">Дві різні історії</span></h2>
     <p class="lead rv">Перемикайте «Як зараз» і «Як може бути» та клікайте по кроках: видно, де клієнт губиться і що змінюється, коли дзвінки, CRM та розшифровка розмов працюють разом.</p>
     <div class="jr rv">
@@ -487,11 +499,12 @@ h1,h2,h3{font-weight:800;letter-spacing:-.025em}
     <div class="lab rv">FAQ</div>
     <h2 class="rv">Часті <span class="g">питання</span></h2>
     <div class="faq rv">
-      <details><summary>Це справді безкоштовно?</summary><p>Так. Потрібна лише реєстрація, щоб ми надіслали посилання.</p></details>
-      <details><summary>Буде запис?</summary><p>Так, надішлемо його тим, хто зареєструвався, разом із презентацією.</p></details>
-      <details><summary>У нас невелика команда. Нам підійде?</summary><p>Підійде, якщо у вас є клієнти, які телефонують і пишуть, і менеджери, які можуть щось забути. Це однаково про команду з трьох людей і з тридцяти.</p></details>
-      <details><summary>Потрібна саме ваша CRM або телефонія?</summary><p>Ні. Ми розповідаємо про підхід, який працює з різними системами. Де потрібна конкретна інтеграція, скажемо про це прямо.</p></details>
-      <details><summary>Можна поставити своє запитання?</summary><p>Так. Напишіть його при реєстрації або в чаті під час ефіру. Найцікавіші розберемо наживо.</p></details>
+      <details><summary>Для кого цей вебінар?</summary><p>Перша частина для бухгалтерів: документи й нагадування клієнтам. Друга для власників і керівників будь-якого бізнесу: вхідні звернення, консультації та передача даних у CRM.</p></details>
+      <details><summary>Це про роботів, які замінять людей?</summary><p>Ні. Робот бере на себе рутину: нагадує, відповідає на базові запитання, коли всі зайняті, і записує розмову. Складні розмови й рішення лишаються за людиною.</p></details>
+      <details><summary>Ми будемо дивитись слайди чи справжній приклад?</summary><p>Ми покажемо робочі приклади: ви почуєте розмову робота й побачите, що з'явилось у CRM.</p></details>
+      <details><summary>Потрібна саме ваша CRM або телефонія?</summary><p>Ні. Ми розповідаємо про підхід, який можна повторити в різних системах. Де потрібна конкретна інтеграція, скажемо про це прямо.</p></details>
+      <details><summary>Це справді безкоштовно? Буде запис?</summary><p>Так, участь безкоштовна. Запис і презентацію надішлемо тим, хто зареєструвався.</p></details>
+      <details><summary>Можна поставити своє запитання?</summary><p>Так. Напишіть його при реєстрації або в чаті під час ефіру. Модератор передасть запитання спікерам, найцікавіші розберемо наживо.</p></details>
     </div>
   </div>
 </section>
@@ -509,8 +522,8 @@ h1,h2,h3{font-weight:800;letter-spacing:-.025em}
         <label for="fn">Ім'я</label><input id="fn" name="name" placeholder="Як до вас звертатися" required autocomplete="name">
         <label for="fe">Email</label><input id="fe" name="email" type="email" placeholder="you@company.com" required autocomplete="email">
         <label for="fp">Телефон</label><input id="fp" name="phone" type="tel" placeholder="+380 __ ___ __ __" required autocomplete="tel">
-        <label for="fs">Розмір відділу продажів</label>
-        <select id="fs" name="size"><option>1–3 менеджери</option><option>4–10 менеджерів</option><option>11–30 менеджерів</option><option>30+</option></select>
+        <label for="fs">Ким ви працюєте</label>
+        <select id="fs" name="role"><option>Бухгалтер або головний бухгалтер</option><option>Власник бізнесу</option><option>Керівник або директор</option><option>Інша роль</option></select>
         <button class="btn" type="submit">Забронювати місце</button>
         <p class="fine">Натискаючи кнопку, ви погоджуєтесь на обробку персональних даних.</p>
       </div></form>
@@ -545,7 +558,7 @@ h1,h2,h3{font-weight:800;letter-spacing:-.025em}
 
 <script>
 const CONFIG = {
-  webinarDate: "2026-12-03T16:00:00+02:00",   // дата та час вебінару
+  webinarDate: "2026-12-10T16:00:00+02:00",   // дата та час вебінару (10 грудня обговорювали орієнтовно, час уточнити)
   formEndpoint: ""                            // URL для відправки форми (CRM / Google Script / Formspree)
 };
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
@@ -584,25 +597,61 @@ tick();setInterval(tick,1000);
 
 /* ticker */
 (function(){
-  const items=[["x","Клієнт зателефонував, ніхто не взяв слухавку"],["a","Дзвінок сам став карткою в CRM"],["v","Менеджер отримав задачу: передзвонити"],["a","Розмова вже розшифрована"],["x","«Передзвоню завтра…» і не передзвонив"],["v","Угода рухається далі"],["a","Запис розмови лежить у картці клієнта"],["v","Жодна заявка не загубилась"]];
+  const items=[["a","Робот зателефонував клієнту й нагадав про акт звірки"],["v","Клієнт відповів, угода в CRM оновилась сама"],["a","Нічний дзвінок: робот відповів і записав запит"],["v","Зранку менеджер отримав готового ліда"],["a","Підсумок розмови вже в картці клієнта"],["v","Задача менеджеру поставилась сама"]];
   const html=items.map(i=>`<span class="${i[0]}">${i[1]}</span>`).join("");
   $("#tickIn").innerHTML=html+html;
 })();
 
-/* ============ CALCULATOR ============ */
-const rs=["leads","check","conv","lossPct"].map(id=>$("#"+id));
-const dotsEl=$("#dots");dotsEl.innerHTML="<i></i>".repeat(100);
-const dots=[...dotsEl.children];
-function calc(){
-  const [leads,check,conv,loss]=rs.map(r=>+r.value);
-  rs.forEach(r=>r.style.setProperty("--p",(r.value-r.min)/(r.max-r.min)*100+"%"));
-  $("#oLeads").textContent=leads;$("#oCheck").textContent=fmt(check)+" ₴";$("#oConv").textContent=conv+" %";$("#oLoss").textContent=loss+" %";
-  const year=leads*loss/100*conv/100*check*12;
-  $("#rYear").textContent=fmt(year)+" ₴";$("#rBack").textContent="+"+fmt(year*.5)+" ₴";
-  const lostN=Math.round(loss),recN=Math.round(lostN*.5);
-  dots.forEach((d,i)=>{const fromEnd=99-i;d.className=fromEnd<lostN?(fromEnd<recN?"r":"l"):""});
+/* ============ CALCULATOR (вигода) ============ */
+function tween(el,to,f){
+  const from=+el.dataset.v||0;el.dataset.v=to;
+  if(reduce){el.textContent=f(to);return}
+  const t0=performance.now();
+  (function step(t){const k=Math.min(1,(t-t0)/450),e=1-Math.pow(1-k,3);el.textContent=f(from+(to-from)*e);if(k<1)requestAnimationFrame(step)})(t0);
 }
-rs.forEach(r=>r.addEventListener("input",calc));calc();
+const MODES={
+  docs:{
+    fields:[
+      {id:"d1",label:"Клієнтів, яким ви нагадуєте щомісяця",min:5,max:300,step:5,val:40},
+      {id:"d2",label:"Нагадувань на одного клієнта за місяць",min:1,max:6,step:1,val:2},
+      {id:"d3",label:"Хвилин на одне нагадування",min:2,max:20,step:1,val:6,suf:" хв"}],
+    k1:"Годин на місяць повернеться вам",k2:"Це за рік",
+    f1:x=>"≈ "+fmt(x)+" год",f2:x=>"≈ "+fmt(x)+" робочих днів",
+    calc:v=>{const h=v.d1*v.d2*v.d3/60;return{a:h,b:h*12/8,sum:`Стільки часу на місяць йде на нагадування вручну. Робот телефонує сам, а ви отримуєте відповідь у CRM.`}},
+    note:"Це приклад для наочності. Реальний час залежить від вашого процесу, а як це налаштувати, покажемо на вебінарі."},
+  calls:{
+    fields:[
+      {id:"c1",label:"Дзвінків на тиждень, які ніхто не взяв (вечір, обід, усі зайняті)",min:1,max:100,step:1,val:5},
+      {id:"c2",label:"Середній чек",min:1000,max:200000,step:1000,val:25000,suf:" ₴"},
+      {id:"c3",label:"Скільки заявок закінчуються продажем",min:2,max:50,step:1,val:15,suf:" %"}],
+    k1:"Додаткових угод за рік",k2:"Додаткова виручка за рік",
+    f1:x=>"+"+fmt(x)+" угод",f2:x=>"+"+fmt(x)+" ₴",
+    calc:v=>{const n=v.c1*52,d=n*v.c3/100;return{a:d,b:d*v.c2,sum:`${fmt(n)} звернень на рік більше не зникають: робот відповідає, збирає дані й створює задачу менеджеру.`}},
+    note:"Це приклад: ми рахуємо, що кожен дзвінок, який ніхто не взяв, був заявкою. Реальна цифра залежить від вашого бізнесу."}
+};
+let cmode="docs";
+function renderCalc(){
+  const M=MODES[cmode];
+  $("#cin").innerHTML=M.fields.map(f=>`<div class="fld"><label for="${f.id}">${f.label} <output></output></label><input type="range" id="${f.id}" min="${f.min}" max="${f.max}" step="${f.step}" value="${f.val}"></div>`).join("");
+  $$("#cin input").forEach(r=>r.addEventListener("input",calc));
+  $("#k1").textContent=M.k1;$("#k2").textContent=M.k2;$("#note").textContent=M.note;
+  $("#v1").dataset.v=0;$("#v2").dataset.v=0;
+  calc();
+}
+function calc(){
+  const M=MODES[cmode],v={};
+  $$("#cin input").forEach((r,i)=>{
+    v[r.id]=+r.value;
+    r.style.setProperty("--p",(r.value-r.min)/(r.max-r.min)*100+"%");
+    const f=M.fields[i];r.closest(".fld").querySelector("output").textContent=fmt(+r.value)+(f.suf||"");
+  });
+  const o=M.calc(v);
+  tween($("#v1"),o.a,M.f1);tween($("#v2"),o.b,M.f2);$("#sum").textContent=o.sum;
+}
+$$("#cmode button").forEach(b=>b.addEventListener("click",()=>{
+  cmode=b.dataset.m;$$("#cmode button").forEach(x=>x.classList.toggle("on",x===b));renderCalc();
+}));
+renderCalc();
 
 /* ============ JOURNEY ============ */
 const J=[
@@ -622,7 +671,7 @@ const J=[
   bad:{h:"Незрозуміло, що в роботі",p:"Скільки угод насправді в роботі, на якому етапі й чому застрягли, керівник дізнається з розпитувань менеджерів.",v:"Прогноз «на око»",rows:[["Воронка","<span class='tag r'>Не видно</span>"],["Прогноз","≈ ?"],["Конверсія","не вимірюється"]]},
   good:{h:"Видно, що відбувається",p:"Кожна угода на своєму етапі. Видно, де вони застрягають і що з цим робити.",v:"Рішення на цифрах, а не на відчуттях",rows:[["Воронка","<span class='tag g'>Як на долоні</span>"],["Прогноз місяця","1,2 млн ₴"],["Конверсія","росте"]]}}
 ];
-let jm="bad",js=0;
+let jm="good",js=0;
 function renderJ(){
   const pipe=$("#pipe");pipe.className="pipe "+jm;
   pipe.querySelectorAll(".nd").forEach(n=>n.remove());
