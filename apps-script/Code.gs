@@ -30,7 +30,7 @@ function doPost(e) {
       );
     } else {
       getSheet(ss, SHEET_FORMS, FORM_HEADERS).appendRow([
-        now, clean(d.source), clean(d.name), clean(d.phone), clean(d.email), clean(d.role),
+        now, clean(d.source), clean(d.name), asText(d.phone), clean(d.email), clean(d.role),
         clean(d.industry), clean(d.question), clean(d.quiz), clean(d.sid), clean(d.page)
       ]);
       if (NOTIFY_EMAIL) {
@@ -79,6 +79,12 @@ function getSheet(ss, name, headers) {
 function clean(v) {
   const s = v == null ? "" : String(v).slice(0, 2000);
   return /^[=+\-@]/.test(s) ? "'" + s : s;
+}
+
+// Телефон завжди пишемо як текст, інакше таблиця перетворить 0671234567 на число й загубить початковий нуль.
+function asText(v) {
+  const s = v == null ? "" : String(v).slice(0, 2000);
+  return s ? "'" + s : "";
 }
 
 function json(obj) {
