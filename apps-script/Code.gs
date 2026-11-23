@@ -58,6 +58,14 @@ function doGet() {
 
 function getSheet(ss, name, headers) {
   let sh = ss.getSheetByName(name);
+  // Таблиця, створена з готовим рядком заголовків: перейменовуємо першу вкладку замість створення нової.
+  if (!sh && name === SHEET_FORMS) {
+    const first = ss.getSheets()[0];
+    if (first && first.getLastRow() >= 1 && first.getRange(1, 1).getValue() === "Час") {
+      first.setName(name);
+      sh = first;
+    }
+  }
   if (!sh) {
     sh = ss.insertSheet(name);
     sh.appendRow(headers);
