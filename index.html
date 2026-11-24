@@ -252,10 +252,10 @@ footer{padding:34px 0 40px;color:var(--mut);font:500 12.5px var(--f-m);text-alig
 @media(max-width:700px){.mcta{display:block}section{padding:68px 0}}
 
 /* about + partnership + takeaway */
-.about{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.about{display:grid;grid-template-columns:.88fr 1.12fr;gap:48px;align-items:start}
 .about p{color:var(--mut);font-size:17px;max-width:580px;margin-bottom:14px}
 .duo{display:grid;grid-template-columns:1fr auto 1fr;gap:0;align-items:stretch;position:relative}
-.co{border:1px solid var(--line);border-radius:20px;padding:24px 20px;background:linear-gradient(180deg,var(--panel),var(--bg2));display:flex;flex-direction:column;gap:8px}
+.co{border:1px solid var(--line);border-radius:20px;padding:22px 20px;background:linear-gradient(180deg,var(--panel),var(--bg2));display:flex;flex-direction:column;gap:8px}
 .co span{font:600 11.5px var(--f-m);letter-spacing:.14em;color:var(--cyan)}
 .co b{font:800 28px var(--f-d);letter-spacing:-.02em}
 .co p{color:var(--mut);font-size:14px;margin:0;max-width:none}
@@ -371,6 +371,18 @@ footer .wrap{display:flex;flex-direction:column;align-items:center;gap:14px}
 .flinks a{color:var(--mut);text-decoration:none}
 .flinks a:hover{color:var(--cyan);text-decoration:underline}
 
+/* partnership cards: more about each company */
+.co .tl{font-weight:700;font-size:15.5px;line-height:1.35;margin-top:4px}
+.co ul{list-style:none;padding:0;margin:0;display:grid;gap:7px;font-size:14px;color:var(--mut)}
+.co li{display:flex;gap:9px}
+.co li::before{content:"✓";color:var(--green);font-weight:800}
+.co .st{display:flex;flex-wrap:wrap;gap:10px;margin-top:2px}
+.co .st>div{border:1px solid var(--line);border-radius:12px;padding:7px 11px;background:var(--glass)}
+.co .st strong{display:block;font-size:18px;font-weight:800;color:var(--cyan);line-height:1.2}
+.co .st em{font-style:normal;font-size:12px;color:var(--mut);white-space:nowrap}
+.co .cl{margin-top:auto;padding-top:6px;font-size:14px;font-weight:700;color:var(--cyan);text-decoration:none}
+.co .cl:hover{text-decoration:underline}
+
 /* QA fixes */
 section[id]{scroll-margin-top:56px}
 .hero .wrap>*{min-width:0}
@@ -447,9 +459,9 @@ section[id]{scroll-margin-top:56px}
         <p class="rv">Багато хто вже пробував автоматизувати дзвінки, і результат не виправдав очікувань. Тому покажемо чесно, що це вміє, а де потрібна людина.</p>
       </div>
       <div class="duo rv">
-        <div class="co"><span>CRM</span><div class="lg-plate"><span class="lg f" role="img" aria-label="Frigat NET"></span></div><p>CRM та автоматизація продажів</p></div>
+        <div class="co"><span>CRM</span><div class="lg-plate"><span class="lg f" role="img" aria-label="Frigat NET"></span></div><div class="tl">Впроваджує CRM та об'єднує різні сервіси в єдину систему</div><ul><li>Впровадження CRM</li><li>Автоматизація бізнес-процесів</li><li>API-інтеграції та Make</li><li>Аналітика для керування продажами</li></ul><a class="cl" href="https://frigat.net/" target="_blank" rel="noopener">frigat.net →</a></div>
         <div class="xx">+</div>
-        <div class="co"><span>ТЕЛЕФОНІЯ</span><div class="lg-plate"><span class="lg i" role="img" aria-label="IPTel"></span></div><p>Телефонія, голосовий робот і мовна аналітика. З 2014 року, понад 450 компаній</p></div>
+        <div class="co"><span>ТЕЛЕФОНІЯ</span><div class="lg-plate"><span class="lg i" role="img" aria-label="IPTel"></span></div><div class="tl">Українська платформа бізнес-комунікацій</div><ul><li>IP-телефонія та контакт-центр</li><li>Автообдзвін і голосовий робот</li><li>Мовна аналітика</li><li>Viber, Telegram, email і SMS в одній системі</li></ul><div class="st"><div><strong>з 2014</strong><em>року працює</em></div><div><strong>450+</strong><em>компаній довіряють</em></div></div><a class="cl" href="https://iptel.ua" target="_blank" rel="noopener">iptel.ua →</a></div>
         <div class="res"><i></i>Frigat розповість про CRM, IPTel про телефонію. Разом вони покажуть весь шлях: від дзвінка до угоди.</div>
       </div>
     </div>
