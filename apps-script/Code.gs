@@ -9,6 +9,7 @@
  *   BITRIX_WEBHOOK       адреса вхідного вебхука, наприклад https://портал.bitrix24.ua/rest/1/код/   (обов'язково)
  *   BITRIX_ASSIGNED_ID   id відповідального (Олексій Гордєєв). Без нього лид створиться без відповідального
  *   BITRIX_SOURCE_NAME   назва джерела як у Bitrix24 (за замовчуванням SOURCE_NAME нижче). Скрипт сам знаходить його код
+ *   BITRIX_STAGE_NAME    назва етапу лида (за замовчуванням STAGE_NAME нижче); BITRIX_STATUS_ID задає код етапу напряму
  *   BITRIX_SOURCE_ID     код джерела, якщо хочете задати його напряму (має пріоритет над назвою)
  */
 
@@ -17,6 +18,9 @@ const NOTIFY_EMAIL = "";
 
 // Назва джерела лида в Bitrix24 (Налаштування → Довідники → Джерела). Має збігатися з назвою в CRM.
 const SOURCE_NAME = "IpTel | Frigat Net | Вебінар";
+
+// Назва етапу (стадії) у воронці лідів Bitrix24, на який потрапляють заявки. Має збігатися з назвою в CRM.
+const STAGE_NAME = "Регистрация на вебинар";
 
 const SHEET_FORMS = "Реєстрації";
 const SHEET_QUIZ = "Міні-тест";
@@ -111,10 +115,11 @@ function sendToBitrix(d) {
 
     // 2) новий лид у воронці лідів
     const source = resolveSource(hook, props);
+    const stage = resolveStage(hook, props);
     const fields = {
       TITLE: "Вебінар: " + (str(d.name) || email || phone),
       NAME: str(d.name),
-      STATUS_ID: "NEW",
+      STATUS_ID: stage.id,
       OPENED: "Y",
       SOURCE_ID: source.id,
       SOURCE_DESCRIPTION: "Лендінг вебінару IPTel × Frigat NET (" + (d.source === "modal" ? "швидка картка" : "форма внизу сторінки") + ")",
@@ -131,7 +136,7 @@ function sendToBitrix(d) {
     if (assigned) fields.ASSIGNED_BY_ID = Number(assigned);
 
     const id = bx(hook, "crm.lead.add", { fields: fields, params: { REGISTER_SONET_EVENT: "Y" } });
-    return "OK: лід #" + id + (assigned ? "" : " (відповідального не задано)") + (source.note ? " (" + source.note + ")" : "");
+    return "OK: лід #" + id + (assigned ? "" : " (відповідального не задано)") + (source.note ? " (" + source.note + ")" : "") + (stage.note ? " (" + stage.note + ")" : "");
   } catch (err) {
     return "ПОМИЛКА: " + safe(err, hook);
   }
@@ -161,9 +166,33 @@ function resolveSource(hook, props) {
   }
 }
 
+// Код етапу лида: 1) BITRIX_STATUS_ID, 2) пошук за назвою серед етапів лідів, 3) NEW.
+function resolveStage(hook, props) {
+  const explicit = props.getProperty("BITRIX_STATUS_ID");
+  if (explicit) return { id: explicit };
+  const name = props.getProperty("BITRIX_STAGE_NAME") || STAGE_NAME;
+  const cache = CacheService.getScriptCache();
+  const key = "stage:" + name;
+  const hit = cache.get(key);
+  if (hit) return { id: hit };
+  try {
+    const list = bx(hook, "crm.status.list", { order: { SORT: "ASC" }, filter: { ENTITY_ID: "STATUS" } }) || [];
+    const want = normName(name);
+    const found = list.filter(function (s) { return normName(s.NAME) === want; })[0] ||
+      list.filter(function (s) { const n = normName(s.NAME); return n && (n.indexOf(want) >= 0 || want.indexOf(n) >= 0); })[0];
+    if (found && found.STATUS_ID) {
+      cache.put(key, found.STATUS_ID, 21600);
+      return { id: found.STATUS_ID };
+    }
+    return { id: "NEW", note: "етап «" + name + "» не знайдено, поставлено NEW" };
+  } catch (err) {
+    return { id: "NEW", note: "не вдалося знайти етап, поставлено NEW: " + safe(err, hook) };
+  }
+}
+
 // Для порівняння назв: без регістру й пробілів, «и» і «і» вважаються однаковими
 function normName(s) {
-  return String(s || "").toLowerCase().replace(/\s+/g, "").replace(/и/g, "і");
+  return String(s || "").toLowerCase().replace(/\s+/g, "").replace(/и/g, "і").replace(/ё/g, "е");
 }
 
 function findDuplicateLead(hook, phone, email) {
