@@ -88,9 +88,10 @@ function doGet() {
 // Повертає короткий статус для колонки «Bitrix24». Ніколи не кидає помилку.
 function sendToBitrix(d) {
   const props = PropertiesService.getScriptProperties();
-  let hook = props.getProperty("BITRIX_WEBHOOK");
-  if (!hook) return "Bitrix не налаштовано";
-  hook = hook.replace(/\/?$/, "/");
+  const rawHook = props.getProperty("BITRIX_WEBHOOK");
+  if (!rawHook) return "Bitrix не налаштовано";
+  const hook = hookUrl(rawHook);
+  if (!hook) return "ПОМИЛКА: BITRIX_WEBHOOK має виглядати як https://портал/rest/число/код/";
   try {
     const phone = normalizePhone(d.phone);
     const email = str(d.email);
@@ -174,8 +175,10 @@ function retryFailed() {
 // Діагностика: Виконати → checkBitrix, потім «Журнал виконання». Показує, чи працює вебхук і хто відповідальний.
 function checkBitrix() {
   const props = PropertiesService.getScriptProperties();
-  const hook = (props.getProperty("BITRIX_WEBHOOK") || "").replace(/\/?$/, "/");
-  if (hook === "/") { Logger.log("BITRIX_WEBHOOK не задано"); return; }
+  const rawHook = props.getProperty("BITRIX_WEBHOOK");
+  if (!rawHook) { Logger.log("BITRIX_WEBHOOK не задано"); return; }
+  const hook = hookUrl(rawHook);
+  if (!hook) { Logger.log("BITRIX_WEBHOOK має виглядати як https://портал/rest/число/код/ . Зараз там інше."); return; }
   try {
     const me = bx(hook, "profile", {});
     Logger.log("Вебхук працює. Користувач вебхука: " + me.NAME + " " + me.LAST_NAME);
@@ -189,6 +192,12 @@ function checkBitrix() {
 }
 
 /* ===================== допоміжне ===================== */
+
+// Лишає тільки https://портал/rest/число/код/ : прибирає пробіли та хвіст на кшталт profile/ або crm.lead.add.json
+function hookUrl(raw) {
+  const m = String(raw || "").trim().match(/^(https:\/\/[^\/\s]+\/rest\/\d+\/[^\/\s]+)(?:\/|$)/i);
+  return m ? m[1] + "/" : "";
+}
 
 // +380XXXXXXXXX: приймає 0671234567, 380671234567, +380 (67) 123-45-67 та інші записи
 function normalizePhone(v) {
