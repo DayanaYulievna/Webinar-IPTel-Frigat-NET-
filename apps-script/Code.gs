@@ -8,11 +8,15 @@
  * Налаштування Bitrix24 зберігаються у «Властивостях скрипта» (Налаштування проєкту → Властивості скрипта):
  *   BITRIX_WEBHOOK       адреса вхідного вебхука, наприклад https://портал.bitrix24.ua/rest/1/код/   (обов'язково)
  *   BITRIX_ASSIGNED_ID   id відповідального (Олексій Гордєєв). Без нього лид створиться без відповідального
- *   BITRIX_SOURCE_ID     код джерела лида, за замовчуванням WEB
+ *   BITRIX_SOURCE_NAME   назва джерела як у Bitrix24 (за замовчуванням SOURCE_NAME нижче). Скрипт сам знаходить його код
+ *   BITRIX_SOURCE_ID     код джерела, якщо хочете задати його напряму (має пріоритет над назвою)
  */
 
 // Куди надсилати сповіщення про нові реєстрації. Залиште порожнім, якщо пошта не потрібна.
 const NOTIFY_EMAIL = "";
+
+// Назва джерела лида в Bitrix24 (Налаштування → Довідники → Джерела). Має збігатися з назвою в CRM.
+const SOURCE_NAME = "IpTel | Frigat Net | Вебінар";
 
 const SHEET_FORMS = "Реєстрації";
 const SHEET_QUIZ = "Міні-тест";
@@ -106,12 +110,13 @@ function sendToBitrix(d) {
     }
 
     // 2) новий лид у воронці лідів
+    const source = resolveSource(hook, props);
     const fields = {
       TITLE: "Вебінар: " + (str(d.name) || email || phone),
       NAME: str(d.name),
       STATUS_ID: "NEW",
       OPENED: "Y",
-      SOURCE_ID: props.getProperty("BITRIX_SOURCE_ID") || "WEB",
+      SOURCE_ID: source.id,
       SOURCE_DESCRIPTION: "Лендінг вебінару IPTel × Frigat NET (" + (d.source === "modal" ? "швидка картка" : "форма внизу сторінки") + ")",
       COMMENTS: commentHtml(d),
       UTM_SOURCE: str(d.utm_source),
@@ -126,10 +131,39 @@ function sendToBitrix(d) {
     if (assigned) fields.ASSIGNED_BY_ID = Number(assigned);
 
     const id = bx(hook, "crm.lead.add", { fields: fields, params: { REGISTER_SONET_EVENT: "Y" } });
-    return "OK: лід #" + id + (assigned ? "" : " (відповідального не задано)");
+    return "OK: лід #" + id + (assigned ? "" : " (відповідального не задано)") + (source.note ? " (" + source.note + ")" : "");
   } catch (err) {
     return "ПОМИЛКА: " + safe(err, hook);
   }
+}
+
+// Код джерела: 1) BITRIX_SOURCE_ID, 2) пошук за назвою в довіднику джерел Bitrix24 (результат кешується на 6 годин), 3) WEB.
+function resolveSource(hook, props) {
+  const explicit = props.getProperty("BITRIX_SOURCE_ID");
+  if (explicit) return { id: explicit };
+  const name = props.getProperty("BITRIX_SOURCE_NAME") || SOURCE_NAME;
+  const cache = CacheService.getScriptCache();
+  const key = "src:" + name;
+  const hit = cache.get(key);
+  if (hit) return { id: hit };
+  try {
+    const list = bx(hook, "crm.status.list", { order: { SORT: "ASC" }, filter: { ENTITY_ID: "SOURCE" } }) || [];
+    const want = normName(name);
+    const found = list.filter(function (s) { return normName(s.NAME) === want; })[0] ||
+      list.filter(function (s) { const n = normName(s.NAME); return n && (n.indexOf(want) >= 0 || want.indexOf(n) >= 0); })[0];
+    if (found && found.STATUS_ID) {
+      cache.put(key, found.STATUS_ID, 21600);
+      return { id: found.STATUS_ID };
+    }
+    return { id: "WEB", note: "джерело «" + name + "» не знайдено в Bitrix24, поставлено WEB" };
+  } catch (err) {
+    return { id: "WEB", note: "не вдалося знайти джерело, поставлено WEB: " + safe(err, hook) };
+  }
+}
+
+// Для порівняння назв: без регістру й пробілів, «и» і «і» вважаються однаковими
+function normName(s) {
+  return String(s || "").toLowerCase().replace(/\s+/g, "").replace(/и/g, "і");
 }
 
 function findDuplicateLead(hook, phone, email) {
