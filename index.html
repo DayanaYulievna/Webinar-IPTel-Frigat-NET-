@@ -203,6 +203,7 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 details{border-bottom:1px solid var(--line)}
 summary{cursor:pointer;list-style:none;font-weight:700;font-size:17px;padding:22px 4px;display:flex;justify-content:space-between;gap:16px}
 summary::-webkit-details-marker{display:none}
+summary>span{min-width:0}
 summary::after{content:"+";font:400 26px/1 var(--f-m);color:var(--cyan);transition:transform .3s}
 details[open] summary::after{transform:rotate(45deg);color:var(--green)}
 details p{padding:0 4px 24px;color:var(--mut);max-width:680px}
@@ -338,7 +339,6 @@ h1,h2,h3{font-weight:800;letter-spacing:-.025em}
 
 /* feedback pass */
 .evd .tm{color:var(--green);font-weight:800;font-size:1.12em}
-.who2-g .pt{display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:.04em;color:var(--cyan);margin-bottom:8px}
 .ava{overflow:hidden}
 .ava img{width:100%;height:100%;object-fit:cover}
 form textarea{width:100%;font:500 16px var(--f-b);padding:14px 16px;border:1.5px solid var(--line);border-radius:12px;margin-bottom:16px;background:var(--panel);color:var(--fg);resize:vertical;min-height:84px;transition:.2s}
@@ -394,6 +394,7 @@ footer .wrap{display:flex;flex-direction:column;align-items:center;gap:14px}
 .demo-note{position:fixed;left:12px;bottom:12px;z-index:90;max-width:calc(100vw - 24px);padding:8px 12px;border-radius:10px;background:var(--warn);color:#fff;font-size:13px;font-weight:700;box-shadow:0 8px 24px -10px rgba(0,0,0,.5)}
 @media(max-width:700px){.demo-note{bottom:76px}}
 
+.brand{font-weight:700;color:var(--cyan)}
 /* QA fixes */
 section[id]{scroll-margin-top:56px}
 .hero .wrap>*{min-width:0}
@@ -467,7 +468,7 @@ section[id]{scroll-margin-top:56px}
         <h2 class="rv">Побачите, як <span class="g">робот бере на себе рутину</span></h2>
         <p class="rv">Нагадати клієнтам про документи. Відповісти на дзвінок, коли всі зайняті. Записати, про що домовились, і поставити задачу менеджеру. Це рутина, яка з'їдає години, і її легко пропустити.</p>
         <p class="rv">До цього додається те, що знайоме кожному в Україні: світло й зв'язок можуть зникнути будь-якої миті, а клієнти все одно телефонують і пишуть.</p>
-        <p class="rv">На вебінарі ми, IPTel та Frigat, покажемо три робочі сценарії: від вхідних дзвінків до документів і розмов. Не на слайдах, а в роботі: ви почуєте, як розмовляє голосовий робот, і побачите, що після цього з'явилось у CRM.</p>
+        <p class="rv">На вебінарі ми, <b class="brand">IPTel</b> та <b class="brand">Frigat</b>, покажемо три робочі сценарії: від вхідних дзвінків до документів і розмов. Не на слайдах, а в роботі: ви почуєте, як розмовляє голосовий робот, і побачите, що після цього з'явилось у CRM.</p>
         <p class="rv">Багато хто вже пробував автоматизувати дзвінки, і результат не виправдав очікувань. Тому покажемо чесно, що це вміє, а де потрібна людина.</p>
         <div class="callout rv"><b>Відділ продажів, який не залежить від світла</b><p>Дзвінки й заявки приймаються цілодобово, навіть якщо в офісі немає світла чи зв'язку. Щойно з'являється доступ, менеджер бачить усе в CRM.</p></div>
       </div>
@@ -475,19 +476,19 @@ section[id]{scroll-margin-top:56px}
         <div class="co"><span>CRM</span><div class="lg-plate"><span class="lg f" role="img" aria-label="Frigat NET"></span></div><div class="tl">Впроваджує CRM та об'єднує різні сервіси в єдину систему</div><ul><li>Впровадження CRM</li><li>Автоматизація бізнес-процесів</li><li>API-інтеграції та Make</li><li>Аналітика для керування продажами</li></ul><div class="st"><div><strong>13+</strong><em>років на ринку</em></div><div><strong>200+</strong><em>клієнтів і проєктів</em></div><div><strong>1500+</strong><em>консультацій</em></div></div><a class="cl" href="https://frigat.net/" target="_blank" rel="noopener">frigat.net →</a></div>
         <div class="xx">+</div>
         <div class="co"><span>ТЕЛЕФОНІЯ</span><div class="lg-plate"><span class="lg i" role="img" aria-label="IPTel"></span></div><div class="tl">Українська платформа бізнес-комунікацій</div><ul><li>IP-телефонія та контакт-центр</li><li>Автообдзвін і голосовий робот</li><li>Мовна аналітика</li><li>Viber, Telegram, email і SMS в одній системі</li></ul><div class="st"><div><strong>з 2014</strong><em>року працює</em></div><div><strong>450+</strong><em>компаній довіряють</em></div></div><a class="cl" href="https://iptel.ua" target="_blank" rel="noopener">iptel.ua →</a></div>
-        <div class="res"><i></i>Frigat розповість про CRM, IPTel про телефонію. Разом вони покажуть весь шлях: від дзвінка до угоди.</div>
+        <div class="res"><i></i><b class="brand">Frigat</b> розповість про CRM, <b class="brand">IPTel</b> про телефонію. Разом вони покажуть весь шлях: від дзвінка до угоди.</div>
       </div>
     </div>
     <div class="who2">
       <h3 class="rv">Для кого цей вебінар</h3>
       <p class="rv">Якщо ви щодня працюєте з дзвінками, заявками та документами клієнтів, тут буде що забрати.</p>
       <div class="who2-g">
-        <div class="rv"><span class="pt">Частина 1</span><b>Керівникам відділів продажів (РОП)</b><p>Бачите всі звернення й не втрачаєте клієнтів.</p></div>
-        <div class="rv"><span class="pt">Частина 1</span><b>Власникам бізнесу</b><p>Дзвінки поза робочим часом і під час відключень світла отримують відповідь, а дані потрапляють у CRM.</p></div>
-        <div class="rv"><span class="pt">Частина 2</span><b>Бухгалтерам і керівникам бухгалтерій</b><p>Документи збираються, а клієнти автоматично отримують нагадування.</p></div>
-        <div class="rv"><span class="pt">Частина 3</span><b>Керівникам сервісу та контакт-центрів</b><p>Прості запитання обробляються автоматично, складні лишаються людям.</p></div>
-        <div class="rv"><span class="pt">Частина 3</span><b>Адміністраторам та офіс-менеджерам</b><p>Менше дзвінків і заявок, які доводиться вести вручну.</p></div>
-        <div class="rv"><span class="pt">Частина 3</span><b>CRM-спеціалістам та інтеграторам</b><p>Дані між телефонією та CRM передаються за подіями без ручної роботи.</p></div>
+        <div class="rv"><b>Керівникам відділів продажів (РОП)</b><p>Бачите всі звернення й не втрачаєте клієнтів.</p></div>
+        <div class="rv"><b>Власникам бізнесу</b><p>Дзвінки поза робочим часом і під час відключень світла отримують відповідь, а дані потрапляють у CRM.</p></div>
+        <div class="rv"><b>Бухгалтерам і керівникам бухгалтерій</b><p>Документи збираються, а клієнти автоматично отримують нагадування.</p></div>
+        <div class="rv"><b>Керівникам сервісу та контакт-центрів</b><p>Прості запитання обробляються автоматично, складні лишаються людям.</p></div>
+        <div class="rv"><b>Адміністраторам та офіс-менеджерам</b><p>Менше дзвінків і заявок, які доводиться вести вручну.</p></div>
+        <div class="rv"><b>CRM-спеціалістам та інтеграторам</b><p>Дані між телефонією та CRM передаються за подіями без ручної роботи.</p></div>
       </div>
     </div>
   </div>
@@ -582,7 +583,7 @@ section[id]{scroll-margin-top:56px}
     <div class="faq rv">
       <details><summary>Це про роботів, які замінять людей?</summary><p>Ні. Автоматично виконується рутина: нагадування, відповіді на прості запитання, коли всі зайняті, запис розмови. Складні розмови й рішення лишаються за людиною.</p></details>
       <details><summary>А якщо в нас відключають світло?</summary><p>Телефонія та голосовий робот працюють на серверах провайдера, а не у вас в офісі, тому дзвінки можуть опрацьовуватися, навіть коли світла в офісі немає. Дані потрапляють у CRM, і менеджер бачить їх, щойно з'являється зв'язок. На вебінарі покажемо, як це налаштувати і що врахувати.</p></details>
-      <details><summary>Чи потрібна саме CRM від Frigat або телефонія від IPTel?</summary><p>Ні. Ми покажемо приклад на своїх системах, а ви зможете повторити підхід в інших. Чи підключиться ваша система, залежить від того, чи є в неї інтеграція з телефонією. Це можна уточнити в чаті під час ефіру.</p></details>
+      <details><summary><span>Чи потрібна саме CRM від <b class="brand">Frigat</b> або телефонія від <b class="brand">IPTel</b>?</span></summary><p>Ні. Ми покажемо приклад на своїх системах, а ви зможете повторити підхід в інших. Чи підключиться ваша система, залежить від того, чи є в неї інтеграція з телефонією. Це можна уточнити в чаті під час ефіру.</p></details>
       <details><summary>Буде запис?</summary><p>Так. Запис і презентацію надішлемо тим, хто зареєструвався.</p></details>
     </div>
   </div>
