@@ -808,13 +808,28 @@ $$("select[data-list]").forEach(sel=>{
   sel.innerHTML='<option value="">Оберіть зі списку</option>'+L.map(x=>`<option>${x}</option>`).join("");
 });
 
+/* UTM-мітки та реклама: беремо з адреси сторінки й тримаємо 30 днів (остання кампанія перемагає),
+   щоб мітки не губились, якщо людина перезавантажить сторінку або повернеться пізніше. */
+const TRACK=(function(){
+  const KEYS=["utm_source","utm_medium","utm_campaign","utm_term","utm_content","gclid","fbclid"];
+  let s={};
+  try{s=JSON.parse(localStorage.getItem("trk")||"{}")}catch(e){}
+  if(s.t&&Date.now()-s.t>30*864e5)s={};
+  const q=new URLSearchParams(location.search),fresh={};
+  KEYS.forEach(k=>{const v=q.get(k);if(v)fresh[k]=v.slice(0,200)});
+  if(Object.keys(fresh).length)s={...fresh,ref:(document.referrer||"").slice(0,300),t:Date.now()};
+  else if(!s.t)s={ref:(document.referrer||"").slice(0,300),t:Date.now()};
+  try{localStorage.setItem("trk",JSON.stringify(s))}catch(e){}
+  const o={};KEYS.forEach(k=>{o[k]=s[k]||""});o.ref=s.ref||"";
+  return o;
+})();
 const SID=(()=>{try{let s=sessionStorage.getItem("sid");if(!s){s=(window.crypto&&crypto.randomUUID?crypto.randomUUID():Date.now()+"-"+Math.random().toString(16).slice(2));sessionStorage.setItem("sid",s)}return s}catch(e){return "no-storage"}})();
 let quizResult=null;
 
 /* Повертає true, якщо заявку прийнято. Без formEndpoint працює як демо: нічого не відправляє, але пише попередження в консоль.
    У режимі "apps-script" відповідь прочитати неможливо (браузер блокує), тому успіхом вважається будь-яка відправка без помилки мережі. */
 async function sendLead(data,source){
-  const payload={...data,source,sid:SID,quiz:quizResult?quizResult.score+"/"+Q.length:"",page:location.href,sentAt:new Date().toISOString()};
+  const payload={...data,source,sid:SID,...TRACK,quiz:quizResult?quizResult.score+"/"+Q.length:"",page:location.href,sentAt:new Date().toISOString()};
   if(!CONFIG.formEndpoint){console.warn("formEndpoint не налаштовано: дані НЕ збережено",payload);return true}
   try{
     if(CONFIG.endpointMode==="json"){
